@@ -1,0 +1,104 @@
+@namespace  "http://www.w3.org/1999/xhtml";
+/* Name          : Supremacy 1914 Goldmark feature remover
+ * Author        : Bergjnl
+ * Version       : 0.10.4
+ * Latest update : 2016-9-07
+ * Desc
+ * Removed:
+ * increase and decrease morale buttons on provincies and troops
+ * protuction and build speedup buttons
+ * spy actions
+ * buttons to open the Goldmark shops
+ * button to buy resources using Goldmark in the market and the resource window
+ * Goldmark price dispay in support our troops window
+ */
+@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
+	/* Removes increase and decrease morale buttons */
+	#func_provbar_incr_morale, #func_provbar_decr_morale, #func_armybar_incr_morale{
+		display: none;
+	}
+
+	/* Sets the appropriate size for all the segments */
+	.big_segment {
+		width: 80px !important;
+	}
+
+	#provinceBarContainer .big_segment:first-child,#provinceBarContainer #func_resource_title {
+		width: 130px !important;
+	}
+
+	#province_bar_title .province_bar_title_cell {
+		width: 84px !important;
+	}
+
+	#provinceBarContainer .province_bar_segment {
+		width: 80px !important;
+	}
+
+	#province_bar_title h3.province_bar_title_cell:nth-child(11) {
+		width: 90px !important;
+	}
+
+	#provinceBarContainer .province_bar_segment:nth-child(5) {
+		width: 90px !important;
+	}
+
+	#province_bar_title h3.province_bar_title_cell:nth-child(13) {
+		width: 62px !important;
+	}
+
+	#provinceBarContainer .province_bar_segment:nth-child(6) {
+		width: 58px !important;
+	}
+
+	/* Removes the Collection point sub-text becausse it doesn't fit */
+	#provinceBarContainer .province_bar_segment:nth-child(6) span {
+		display: none;
+	}
+
+	/* Fix the width of the provincebar and re-center it again */
+	#provinceBarContainer {
+		width: 784px;
+		margin-left: -392px;
+	}
+
+	/* Correct the width of the procincebar */
+	#province_bar_title {
+		width: 680px;
+	}
+
+	/* Removes protuction and build speedup buttons */
+	.func_production_speedup,#func_provbar_building_speedup,#func_provconstr_building_speedup,#func_factory_speedup,.speedup_action,.func_building_speedup,.building_speedup{
+		display: none;
+	}
+
+	/* Removes instant spy actions */
+	#func_instant_spy_actions,#func_spyinfo_premium {
+		display: none !important;
+	}
+
+	/* Removes shop open button */
+	.func_open_shop,#func_spy_bar li:last-child,#func_marketing_teaser {
+		display: none !important;
+	}
+
+	/* Removes the bar at the right side of the Shop open button in the Resoursce bar */
+	.glasspanel li:nth-last-child(2) {
+		border-right: none;
+	}
+
+	/* Removes resource buy option in the market and the resource window */
+	.buy_table tr:first-child,.func_resource_instant_buy {
+		display: none;
+	}
+
+	/* Fixes the table where the goldmark feature is removed */
+	.top_order_table_container.buy_table {
+		height: 105px;
+	}
+
+	/* Removed price dispay in the support our troops window*/
+	.woficons-priceshield {
+		display: none;
+	}
+}

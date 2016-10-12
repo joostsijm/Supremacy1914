@@ -1,0 +1,41 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+/* Name          : Supremacy 1914 Website Modification
+ * Author        : Bergjnl
+ * Version       : 0.1.1
+ * Latest update : 2016-8-30
+ * Desc          :
+ *   Modification to the main website of supremacy,
+ *   makes it look better and more usable.
+ */
+@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
+	.sg_bg {
+		background: url("http://www.supremacy1914.com/fileadmin/templates/supremacy_1914/landing/7/lp7_back.jpg") no-repeat center top fixed;
+	}
+	#sg_main {
+		-webkit-box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.5);
+		-moz-box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.5);
+		box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.5);
+		background: black;
+	}
+	.sg_game_playerlist_small {
+		overflow: auto
+	}
+	.sg_game_comment_small {
+		width: 145px;
+		padding-left: 7px;
+	}
+	.sg_mgpaper_headline {
+		width: 245px;
+	}
+	#sg_mgpaper_id {
+		padding-right: 20px;
+		text-align: left;
+	}
+	#sg_mgpaper_ingame_part {
+		float: left;
+		padding: 1px 7px;
+	}
+	.sg_premium_account_header_image {
+		display: none;
+	}
+}
