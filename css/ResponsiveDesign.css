@@ -1,204 +1,254 @@
 @namespace  "http://www.w3.org/1999/xhtml";
-/* Name          : Supremacy 1914 additional Simple styles
+/* Name          : Supremacy 1914 Responsive Design
  * Author        : Bergjnl
- * Version       : 0.13.0
- * Latest update : 2016-9-30
+ * Version       : 0.0.1
+ * Latest update : 2016-10-12
  */
 @-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
-  @media screen and (max-width: 980px) {
-    /* News article full with */
-    .newspaper_article {
-      width: 100%;
-    }
-    .newspaper_overview_section {
-      width: 100% !important;
-    }
-    @media screen and (max-width: 700px) {
-      #newspaper_search {
-        width: 100%;
-        display: flex;
-      }
-      .diplomacy_search_box {
-        width: 100%
-      }
-      .newspaper_tabs ul {
-        display: flex;
-        width: 100%;
-      }
-      #func_news_cat_filter {
-        display: flex;
-        text-align: center;
-        margin-top: 40px;
-      }
-      #func_news_cat_filter li {
-        display: block;
-      }
-    }
-    #resourceBarContainer > div {
-      width: 100%;
-    }
-    #armyBarContainer{
-      height: 122px;
-      transform: scale(0.8, 0.8) !important;
-    }
-    .glasspanel ul {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .glasspanel li {
-      border: 0;
-      width: 24%;
-    }
-    @media screen and (max-width: 400px) {
-      .glasspanel li {
-        border: 0;
-        width: 32%;
-      }
-    } 
-    #miniProfileContainer {
-      display: none;
-    }
-    #menuContainer {
-      bottom: 20px;
-    }
-    .province_bar_segment .province_bar_button {
-      width: 100%;
-      margin-left: 0px;
-      height: 100%;
-    }
-    #provinceBarContainer {
-      width: 100%;
-      margin-left: 0;
-      left: 0;
-    }
-    #province_bar_title {
-      width: 100%;
-      margin-left: 0;
-    }
-    .province_bar_content {
-      left: 0;
-      right: 0;
-      display: flex !important;
-    }
-    .sync_army span, .forced_march span {
-      display: none
-    }
-    #diplomacyContainer {
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-      z-index: 20002 !important;
-    }
-    #diplomacy_threads .box_title {
-      text-align: center;
-      padding-top: 10px;
-    }
-    #func_diplomacy_messages {
-      display: flex;
-      flex-flow: column;
-    }
-    #func_diplomacy_messages div {
-      margin-bottom: 5px;
-    }
-    #func_diplomacy_messages #diplomacy_threads {
-      top: 0;
-      bottom: 0;
-      left: 0;
-      height: 35%;
-      width: 100%;
-      position: relative;
-    }
-    #func_diplomacy_messages #diplomacy_thread_action {
-      text-align: right;
-    }
-    #func_diplomacy_messages #diplomacy_message_list {
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      height: 50%;
-      position: relative;
-    }
-    #func_diplomacy_message_creation {
-      width: 100% !important;
-      background: none !important;
-      position: relative;
-      border-radius: 4px;
-      border: 1px solid #b5ad98;
-      position: relative !important;
-      bottom: 0 !important;
-      right: 0 !important;
-    }
-    #func_diplomacy_message_creation textarea {
-      background: rgba(255,255,255,0.21) !important;;
-      width: 50% !important;
-    }
-    .trade_button .autoResizeLine {
-      white-space: pre-line;
-    }
-    .func_show_create_trade {
-      height: 50px;
-    }
-    #stockmarketContainer {
-     top: 0 !important;
-     left: 0 !important;
-     width: 100% !important;
-     height: 100% !important;
-     z-index: 20002 !important;
-    }
-    /* Settings button */
-    #clientControlsContainer {
-      top: 63px;
-    }
-    #clientControlsContainer .client_controls {
-      width: 34px;
-      top: 34px;
-      right: 0;
-      z-index: 1000;
-    }
-    #func_client_logout {
-      display: none !important;
-    }
-    /* Resource settings */
-    #resourcesContainer {
-     top: 0 !important;
-     left: 0 !important;
-     width: 100% !important;
-     height: 100% !important;
-     z-index: 20002 !important;     
-    }
-    .resources_page {
-      width: 100%;
-      padding: 0;
-    }
-    .resource_table tr {
-      display: flex;
-      width: 100%;
-    }
-    .resource_category_total_row {
-      border-top: 1px solid rgba(0,0,0,0.15);
-      /* background-color: rgba(0,0,0,0.15); */
-    }
-    .resource_category_total_row td {
-      border-top: none !important;
-    }
-    .resource_category_header {
-      width: 100%
-    }
-    .resource_table .resize_name, .resource_table .resize_amount {
-      width: 80px;
-    }
-    .resource_category_total_row td:first-child {
-      width: 38px;
-    }
-    .column_resource_rate {
-      width: 50px;
-    }
-    @media screen and (max-width: 620px) {
-      .resource_table tr {
-        flex-wrap: wrap;
-      }
-    } 
-  }
+	@media screen and (max-width: 980px) {
+		#miniProfileContainer {
+			display: none;
+		}
+		#menuContainer {
+			bottom: 20px;
+		}
+		/* News article full with */
+		.newspaper_article {
+			width: 100%;
+		}
+		.newspaper_overview_section {
+			width: 100% !important;
+		}
+		@media screen and (max-width: 700px) {
+			#newspaper_search {
+				width: 100%;
+				display: flex;
+			}
+			.diplomacy_search_box {
+				width: 100%
+			}
+			.newspaper_tabs ul {
+				display: flex;
+				width: 100%;
+			}
+			#func_news_cat_filter {
+				display: flex;
+				text-align: center;
+				margin-top: 40px;
+			}
+			#func_news_cat_filter li {
+				display: block;
+			}
+		}
+		/* Fixing the resource bar */
+		#resourceBarContainer > div {
+			width: 100%;
+		}
+		.glasspanel ul {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.glasspanel li {
+			border: 0;
+			width: 24%;
+		}
+		@media screen and (max-width: 400px) {
+			.glasspanel li {
+				border: 0;
+				width: 32%;
+			}
+		} 
+		/* Province bar */
+		.province_bar_segment .province_bar_button {
+			width: 100%;
+			margin-left: 0px;
+			height: 100%;
+		}
+		#func_spyprov_reports {
+			display: none;
+		}
+		#provinceBarContainer {
+			width: 100%;
+			margin-left: 0;
+			left: 0;
+		}
+		#province_bar_title {
+			width: 100%;
+			margin-left: 0;
+		}
+		@media screen and (max-width: 700px) {
+			#province_bar_title {
+				display: none;
+			}
+			#provinceBarContainer {
+				height: auto;
+			}
+			#province_bar > div {
+				#flex-wrap: wrap;
+			}
+			#func_morale_info, #func_resource_info, .three_columns span:last-child {
+				display: none;
+			}
+		}
+		.province_bar_content {
+			left: 0;
+			right: 0;
+			display: flex !important;
+		}
+		.province_bar_segment button {
+			margin-top: 5px;
+		}
+		/* Army Bar */
+		#armyBarContainer{
+			width: 100%;
+			margin-left: 0;
+			left: 0;
+			transform: scale(1, 1) !important;
+		}
+		#army_bar_title {
+			margin-left: 0;
+		}
+		.army_bar_content {
+			width: 100%;
+			left: 0;
+			right: 0;
+			display: flex !important;
+		}
+		.sync_army span, .forced_march span {
+			display: none
+		}
+		/* Alliancy */
+		#inGameAllianceContainer {
+			top: 0 !important;
+			left: 0 !important;
+			width: 100% !important;
+			height: 100% !important;
+			z-index: 20002 !important;
+		}
+		/* Diplomacy */
+		#diplomacyContainer {
+			top: 0 !important;
+			left: 0 !important;
+			width: 100% !important;
+			height: 100% !important;
+			z-index: 20002 !important;
+		}
+		#diplomacy_threads .box_title {
+			text-align: center;
+			padding-top: 10px;
+		}
+		#func_diplomacy_messages {
+			display: flex;
+			flex-flow: column;
+		}
+		#func_diplomacy_messages div {
+			margin-bottom: 5px;
+		}
+		#func_diplomacy_messages #diplomacy_threads {
+			top: 0;
+			bottom: 0;
+			left: 0;
+			height: 35%;
+			width: 100%;
+			position: relative;
+		}
+		#func_diplomacy_messages #diplomacy_thread_action {
+			text-align: right;
+		}
+		#func_diplomacy_messages #diplomacy_message_list {
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			height: 50%;
+			position: relative;
+		}
+		#func_diplomacy_message_creation {
+			width: 100% !important;
+			background: none !important;
+			position: relative;
+			border-radius: 4px;
+			border: 1px solid #b5ad98;
+			position: relative !important;
+			bottom: 0 !important;
+			right: 0 !important;
+		}
+		#func_diplomacy_message_creation textarea {
+			background: rgba(255,255,255,0.21) !important;;
+			width: 50% !important;
+		}
+		.trade_button .autoResizeLine {
+			white-space: pre-line;
+		}
+		.func_show_create_trade {
+			height: 50px;
+		}
+		/* Stockmarket */
+		#stockmarketContainer {
+			top: 0 !important;
+			left: 0 !important;
+			width: 100% !important;
+			height: 100% !important;
+			z-index: 20002 !important;
+		}
+		/* Settings button */
+		#clientControlsContainer {
+			top: 63px;
+		}
+		#clientControlsContainer .client_controls {
+			width: 34px;
+			top: 34px;
+			right: 0;
+			z-index: 1000;
+		}
+		#func_client_logout {
+			display: none !important;
+		}
+		/* Resource settings */
+		#resourcesContainer {
+			top: 0 !important;
+			left: 0 !important;
+			width: 100% !important;
+			height: 100% !important;
+			z-index: 20002 !important;
+			position: inherit !important;
+			min-width: 0 !important;
+			/* Position isn't needed, but ik makes the piramid looks nice :) */
+		}
+		.resources_page {
+			width: 100%;
+			padding: 0;
+		}
+		.resource_table tr {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+		}
+		.resource_category_total_row {
+			border-top: 1px solid rgba(0,0,0,0.15);
+		}
+		.resource_category_total_row td {
+			border-top: none !important;
+		}
+		.resource_category_header {
+			width: 100%
+		}
+		.resource_table .resize_name, .resource_table .resize_amount {
+			width: 80px;
+		}
+		.resource_category_total_row td:first-child {
+			width: 38px;
+		}
+		.column_resource_rate {
+			width: 50px;
+		}
+		@media screen and (max-width: 620px) {
+			.resource_table tr {
+				flex-wrap: wrap;
+			}
+			#func_resource_overview thead {
+				display: none
+			}
+		} 
+	}
 }
