@@ -1,0 +1,26 @@
+{
+  "name": "Supremacy1914-power-index-log",
+  "version": "0.1.0",
+  "description": "An automatic script based on NodeJS that logs the power each player has. Checks every day.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jshint index.js config.js"
+  },
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/joostsijm/Supremacy1914/"
+  },
+  "license" : "Apache-2.0",
+  "keywords": [
+    "Supremacy1914",
+    "browser",
+    "game",
+    "statics"
+  ],
+  "author": "Joost Sijm",
+  "dependencies": {
+    "nightmare": "^2.6.0",
+    "minimist": "^1.2.0",
+    "request": "^2.74.0"
+  }
+}
