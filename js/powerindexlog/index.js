@@ -98,37 +98,32 @@ function CheckIndex(vargameid) {
 		console.log("[DEBUG] Opening the game: " + vargameid);
 	}
 	nightmare
-		.exists('input[id=sg_game_search_field]')
-		.then(function(nope) {
-			console.log("werkt het: " + nope);
-		});
-	nightmare
 		.type('input[id=sg_game_search_field]', vargameid)
 		.click('div[id=sg_game_search_arrow]')
-		.then(function(r){
-			nightmare
-				.click('tbody[id=sg_game_table_content] div[id*=test_game_] img[src*=guestlogin]')
-				.then(function(r){});
-		});
-	//	.then(function(validated)  {
-	//		console.log(validated);
-	//		if(!validated) {
-	//			console.log("[" + vargameid + "] Servers are acting up... Trying again.");
-	//			return function() { nightmare.wait(500).refresh().wait(); opengame(ctr); };
-	//		} else {
-	//			return function() { fillFirstPage(ctr); };
-	//		}
-	//	})
-	//	.then(function(next) {
-	//		 Handle next step: either a loop to first page in case of error, or form fill on success
-	//	return next();
-	//		})
-	// .catch(handleError)
-	//	.then(function(err) {
-	//		if (typeof err !== "undefined") {
-	//			return opengame(ctr);
-	//		}
-	//	});
+		.wait(500)
+		.click('tbody[id=sg_game_table_content] div[id*=test_game_] img[src*=guestlogin]')
+//		.wait(5000)
+//		.click('div[id=func_btn_newspaper]')
+		.then(function(r){})
+//		.then(function(validated)  {
+//			console.log(validated);
+//			if(!validated) {
+//				console.log("[" + vargameid + "] Servers are acting up... Trying again.");
+//				return function() { nightmare.wait(500).refresh().wait(); opengame(ctr); };
+//			} else {
+//				return function() { fillFirstPage(ctr); };
+//			}
+//		})
+//		.then(function(next) {
+//			 Handle next step: either a loop to first page in case of error, or form fill on success
+//		return next();
+//			})
+// 	.catch(handleError)
+//		.then(function(err) {
+//			if (typeof err !== "undefined") {
+//				return opengame(ctr);
+//			}
+//		});
 }
 
 function fillFirstPage(ctr) {
