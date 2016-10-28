@@ -5,7 +5,7 @@ var fs = require('fs');
 var request = require('request');
 
 // Settings
-var debug = true;
+var debug = false;
 var showWindow = true;
 
 // Start Config File Imports
@@ -50,70 +50,42 @@ Login();
 
 // Helpers
 
-// function handleError(err) {
-// 	if(debug) {
-// 		console.log("[DEBUG] Error: " + JSON.stringify(err));
-// 	}
-// 	return err;
-// }
-
-// function Login() {
-// 	if(debug) {
-// 		console.log("[DEBUG] Handle login page: " + username);
-// 	}
-// 	nightmare
-// 		.goto(suploginurl)
-// 		.wait(2000)
-// 		.type('form[id="sg_login_form"] [id=user]', username)
-// 		.type('form[id="sg_login_form"] [id=pass]', password)
-// 		.click('form[id="sg_login_form"] [type=submit]')
-// 		.wait(1000);
-// }
-function Login() {
+function handleError(err) {
 	if(debug) {
-		console.log("[DEBUG] Handle login page: " + username);
+		console.log("[DEBUG] Error: " + JSON.stringify(err));
 	}
+	return err;
+}
+
+function Login() {
+	if(debug) { console.log("[DEBUG] Handle login page: " + username); }
 	nightmare
 		.windowManager()
 		.goto(suploginurl)
 		.exists('form[id=sg_login_form]')
 		.then(function(nologin) {
 			if (nologin) {
-				console.log("[Debug] Nog logged in.")
+				if(debug) { console.log("[DEBUG] Not logged in.") }
 				nightmare
 					.type('form[id=sg_login_form] [id=user]', username)
 					.type('form[id=sg_login_form] [id=pass]', password)
 					.click('form[id=sg_login_form] [type=submit]')
-				console.log("[Debug] Naam inguvuld");
+					.waitWindowLoad()
+				if(debug) { console.log("[DEBUG] Filled in name"); }
 			}
-			else { console.log("[Debug] Already logged in.") }
+			else if(debug) { console.log("[DEBUG] Already logged in.") }
 			return CheckIndex(gameid);
 		});
-	//	console.log(nightmare.type('form[id="sg_login_form"]'));
-	//	console.log(nightmare.type('form[id="sg_logout"]'));
-	//	if (nightmare.type('form[id="sg_login_form"]')) {
 }
-
-// First page
 function CheckIndex(vargameid) {
-	if(debug) {
-		console.log("[DEBUG] Opening the game: " + vargameid);
-	}
+	if(debug) { console.log("[DEBUG] Opening the game: " + vargameid); }
 	nightmare
 		.type('input[id=sg_game_search_field]', vargameid)
 		.click('div[id=sg_game_search_arrow]')
-		.wait(1000)
+		.wait(1200)
 		.click('tbody[id=sg_game_table_content] div[id*=test_game_] img[src*=guestlogin]')
-		.waitWindowLoad()
-		.currentWindow()
 		.then(function(windowvar){
-			console.dir(windowvar);
-			nightmare
-				.evaluate(function () {
-					return document.title;
-				})
-				.then(function(result) {
-					console.log("Window name: " + result)
-				})
-		})
+			console.log("Opening Game: " + vargameid)
+			if(debug) { console.dir(windowvar); }
+		});
 }
