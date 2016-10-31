@@ -5,7 +5,7 @@ var fs = require('fs');
 var request = require('request');
 
 // Settings
-var debug = false;
+var debug = true;
 var showWindow = true;
 
 // Start Config File Imports
@@ -74,18 +74,101 @@ function Login() {
 				if(debug) { console.log("[DEBUG] Filled in name"); }
 			}
 			else if(debug) { console.log("[DEBUG] Already logged in.") }
-			return CheckIndex(gameid);
+			getgameurl(gameid);
+			nightmare
+				.current
 		});
 }
-function CheckIndex(vargameid) {
+function getgameurl(vargameid) {
 	if(debug) { console.log("[DEBUG] Opening the game: " + vargameid); }
 	nightmare
 		.type('input[id=sg_game_search_field]', vargameid)
 		.click('div[id=sg_game_search_arrow]')
 		.wait(1200)
 		.click('tbody[id=sg_game_table_content] div[id*=test_game_] img[src*=guestlogin]')
-		.then(function(windowvar){
+		.waitWindowLoad()
+		.evaluateWindow(function(){
+			return document.getElementById("ifm").src;
+		})
+		.then(function(gameurl){
 			console.log("Opening Game: " + vargameid)
-			if(debug) { console.dir(windowvar); }
-		});
+			if(debug) { console.log("Game Url:" +  gameurl); }
+			var indexdays= [];
+			gotogame(gameurl)
+		})
+}
+function gotogame(gameurl) {
+	nightmare
+		.goto(gameurl)
+		.waitWindowLoad()
+		.then(function() {
+			OpenPaper()
+		})
+}
+function OpenPaper() {
+	nightmare
+		.wait(2500)
+		.click('div[id=func_btn_newspaper]')
+		.then(function() {
+			FillPaper();
+		})
+		.catch(function(error) {
+			handleError(error);
+			OpenPaper();
+		})
+}
+function FillPaper() {
+	nightmare
+		.wait(2000)
+		.evaluate(function() {
+			return document.querySelector('input#func_newspaper_day_tf').value;
+		})
+		.then(function(totaldays) {
+			if(debug) { console.log("Total Days:" +  totaldays); }
+			indexdays = [];
+			RunNext(0, totaldays, indexdays);
+		})
+		.catch(function(error) {
+			handleError(error);
+			FillPaper();
+		})
+}
+function RunNext (day, totaldays, indexdays) {
+	if (day < totaldays) {
+		if(debug) { console.log("Getting power index of day: " +  day); }
+		nightmare
+			.evaluate(function() {
+				document.querySelector('input#func_newspaper_day_tf').value = ''
+			})
+			.type('input[id=func_newspaper_day_tf]', day)
+			.wait(500)
+			.evaluate(function() {
+				var data = []
+				for (player of document.querySelectorAll('div#newspaper_ranking_single ol li')) {
+					playerdata = [];
+					playerdata[0] = player.querySelector('div.autoResizeLine').innerHTML.trim()
+					playerdata[1] = player.querySelector('div.ranking_points').innerHTML.trim()
+					data.push(playerdata)
+				}
+				return data
+			})
+			.then(function(dayindex) {
+				//	console.log(dayindex)
+				indexdays.push(dayindex)
+			});
+		nightmare
+		//.	.wait(1000)
+			.run(function() {
+				RunNext(day+1);
+			});
+	}
+	else {
+		processdays(indexdays)
+	}
+}
+
+function processdays(indexdays) {
+	console.log("exit")
+	nightmare
+		.end()
 }

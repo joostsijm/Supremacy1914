@@ -20,7 +20,6 @@
   "author": "Joost Sijm",
   "dependencies": {
     "nightmare": "2.6.1",
-    "minimist": "^1.2.0",
     "request": "^2.74.0",
     "nightmare-window-manager": "^0.2.2"
   }
