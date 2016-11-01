@@ -153,13 +153,12 @@ function RunNext (day, totaldays, indexdays) {
 				return data
 			})
 			.then(function(dayindex) {
-				//	console.log(dayindex)
 				indexdays.push(dayindex)
 			});
 		nightmare
-		//.	.wait(1000)
+			.wait(1000)
 			.run(function() {
-				RunNext(day+1);
+				RunNext(day+1, totaldays, indexdays);
 			});
 	}
 	else {
@@ -168,7 +167,8 @@ function RunNext (day, totaldays, indexdays) {
 }
 
 function processdays(indexdays) {
-	console.log("exit")
+	console.dir(indexdays);
+	console.log("exit");
 	nightmare
 		.end()
 }
