@@ -1,7 +1,9 @@
-var responseExample = require('./responseExample');
+var fs = require('fs');
+var responseExample = require('./responseExampleLong');
 var dayindex = responseExample.dayIndexExample;
-
-console.log(daymix(dayindex));
+var mixedDays = daymix(dayindex)
+console.log(mixedDays);
+writeLogFile(mixedDays);
 
 function daymix(dayindex) {
 	console.log('[DEBUG] Start daymix');
@@ -12,14 +14,13 @@ function daymix(dayindex) {
 		for(var p=1; p<dayindex[i].length; p++) {
 			console.dir(dayindex[i][p]);
 			playerindex = output[0].indexOf(dayindex[i][p][0]);
+			playerindex++;
 			console.log('[DEBUG] Playerindex: ' + playerindex);
-			if(playerindex == '-1') {
+			if(playerindex == '0') {
 				lenght = output.length;
 				output[lenght] = [];
 				output[lenght].push(dayindex[i][p][0]);
-				for(var o=1; o<i; o++) {
-					output[lenght].push('');
-				}
+				output[lenght] = fillempty(output[lenght], i);
 				output[lenght].push(dayindex[i][p][1]);
 				output[0].push(dayindex[i][p][0]);
 			}
@@ -28,18 +29,40 @@ function daymix(dayindex) {
 					console.log('[DEBUG] No player in output');
 				}
 				else {
-					if(output[playerindex].length<= i) {
-						for(var u =output[playerindex].length; u<=i; u++) {
-							output[playerindex].push('');
-						}
-					}
+					output[playerindex] = fillempty(output[playerindex], i);
 					console.log('[DEBUG] Else, player: ' + dayindex[i][p][0]);
 					console.log('[DEBUG] Else, index : ' + dayindex[i][p][1]);
-					console.dir(output);
 					output[playerindex].push(dayindex[i][p][1]);
 				}
 			}
 		}
 	}
+	output[playerindex] = fillempty(output[playerindex], i);
 	return output;
+}
+function fillempty(playerlog, lenght) {
+	if(playerlog.length <= lenght) {
+		for(var u=playerlog.lenght; u<=lenght; u++) {
+			playerlog.push('');
+		}
+	}
+	return playerlog;
+}
+function writeLogFile(mixedDays) {
+	fs.appendFile("./output.csv", '', function(err) {
+		if(err) {
+			return console.log(err);
+		}
+		console.log("File cleared");
+	});
+	for(var i=1; i<mixedDays.length; i++) {
+		mixedDays[i].push('\n');
+		mixedDays[i][0] = '\"' + mixedDays[i][0] + '\"';
+		fs.appendFile("./output.csv", mixedDays[i], function(err) {
+			if(err) {
+				return console.log(err);
+			}
+			console.log("The file was saved!");
+		}); 
+	}
 }
