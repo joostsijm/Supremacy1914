@@ -126,7 +126,7 @@ function FillPaper() {
 		.then(function(totaldays) {
 			if(debug) { console.log("Total Days:" +  totaldays); }
 			indexdays = [];
-			RunNext(0, totaldays, indexdays);
+			RunNext(1, totaldays, indexdays);
 		})
 		.catch(function(error) {
 			handleError(error);
@@ -134,7 +134,7 @@ function FillPaper() {
 		})
 }
 function RunNext (day, totaldays, indexdays) {
-	if (day < totaldays) {
+	if (day <= totaldays) {
 		if(debug) { console.log("Getting power index of day: " +  day); }
 		nightmare
 			.evaluate(function() {
@@ -143,7 +143,7 @@ function RunNext (day, totaldays, indexdays) {
 			.type('input[id=func_newspaper_day_tf]', day)
 			.wait(500)
 			.click('div[id=func_newspaper_ranking_show_all_button]')
-			.wait(1000)
+			.wait(500)
 			.evaluate(function() {
 				var data = []
 				for (player of document.querySelectorAll('div#newspaper_ranking_single ol li')) {
@@ -155,10 +155,11 @@ function RunNext (day, totaldays, indexdays) {
 				return data
 			})
 			.then(function(dayindex) {
+				console.dir(dayindex);
 				indexdays.push(dayindex)
 			});
 		nightmare
-			.wait(2000)
+			.wait(1500)
 			.run(function() {
 				RunNext(day+1, totaldays, indexdays);
 			});
@@ -173,4 +174,5 @@ function processdays(indexdays) {
 	console.log("exit");
 	nightmare
 		.end()
+		.then()
 }
