@@ -19,8 +19,7 @@
   ],
   "author": "Joost Sijm",
   "dependencies": {
-    "nightmare": "2.6.1",
-    "request": "^2.74.0",
+    "nightmare": "^2.8.1",
     "nightmare-window-manager": "^0.2.2"
   }
 }

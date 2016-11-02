@@ -87,14 +87,19 @@ function getgameurl(vargameid) {
 		.wait(1200)
 		.click('tbody[id=sg_game_table_content] div[id*=test_game_] img[src*=guestlogin]')
 		.waitWindowLoad()
-		.evaluateWindow(function(){
-			return document.getElementById("ifm").src;
-		})
-		.then(function(gameurl){
-			console.log("Opening Game: " + vargameid)
-			if(debug) { console.log("Game Url:" +  gameurl); }
-			var indexdays= [];
-			gotogame(gameurl)
+		.currentWindow()
+		.then(function(currentwindow){
+			nightmare
+				.goto(currentwindow.url)
+				.evaluate(function() {
+					return document.getElementById("ifm").src;
+				})
+				.then(function(gameurl) {
+					console.log("Opening Game: " + vargameid)
+					if(debug) { console.log("Game Url:" +  gameurl); }
+					var indexdays= [];
+					gotogame(gameurl)
+				})
 		})
 }
 function gotogame(gameurl) {
@@ -155,7 +160,6 @@ function RunNext (day, totaldays, indexdays) {
 				return data
 			})
 			.then(function(dayindex) {
-				console.dir(dayindex);
 				indexdays.push(dayindex)
 			});
 		nightmare
@@ -170,9 +174,66 @@ function RunNext (day, totaldays, indexdays) {
 }
 
 function processdays(indexdays) {
-	console.dir(indexdays);
-	console.log("exit");
+	console.log("Exit Nightmare");
 	nightmare
 		.end()
 		.then()
+	var mixedDays = daymix(indexdays)
+	writeLogFile(mixedDays)
+}
+function daymix(dayindex) {
+	console.log('Processing days');
+	output = [];
+	output[0] = [];
+	for(var i=0; i<dayindex.length; i++) {
+		for(var p=1; p<dayindex[i].length; p++) {
+			playerindex = output[0].indexOf(dayindex[i][p][0]);
+			playerindex++;
+			if(playerindex == '0') {
+				lenght = output.length;
+				output[lenght] = [];
+				output[lenght].push(dayindex[i][p][0]);
+				output[lenght] = fillempty(output[lenght], i);
+				output[lenght].push(dayindex[i][p][1]);
+				output[0].push(dayindex[i][p][0]);
+			}
+			else {
+				if(output[playerindex] == null) {
+					console.log('[DEBUG] No player in output');
+				}
+				else {
+					output[playerindex] = fillempty(output[playerindex], i);
+					output[playerindex].push(dayindex[i][p][1]);
+				}
+			}
+		}
+	}
+	output[playerindex] = fillempty(output[playerindex], i);
+	return output;
+}
+function fillempty(playerlog, lenght) {
+	if(playerlog.length <= lenght) {
+		for(var u=playerlog.lenght; u<=lenght; u++) {
+			playerlog.push('');
+		}
+	}
+	return playerlog;
+}
+function writeLogFile(mixedDays) {
+	fs.writeFile("./output.csv", '', function(err) {
+		if(err) {
+			return console.log(err);
+		}
+		console.log("File cleared");
+	});
+	for(var i=1; i<mixedDays.length; i++) {
+		mixedDays[i].push('\n');
+		mixedDays[i][0] = '\"' + mixedDays[i][0] + '\"';
+		fs.appendFile("./output.csv", mixedDays[i], function(err) {
+			if(err) {
+				return console.log(err);
+			}
+		}); 
+	}
+	console.log("The file was saved!");
 }
