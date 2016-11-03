@@ -1,0 +1,24 @@
+{
+  "name": "Supremacy1914-SupreMarket",
+  "version": "0.1.0",
+  "description": "A script that checks the supermacy market for deals",
+  "main": "supremarket.js",
+  "scripts": {
+    "test": "jshint supremarket.js"
+  },
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/joostsijm/Supremacy1914/"
+  },
+  "license" : "Apache-2.0",
+  "keywords": [
+    "Supremacy1914",
+    "browser",
+    "market"
+  ],
+  "author": "Joost Sijm",
+  "dependencies": {
+    "nightmare": "^2.8.1",
+    "nightmare-window-manager": "^0.2.2"
+  }
+}

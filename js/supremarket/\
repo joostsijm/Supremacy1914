@@ -1,4 +1,6 @@
 // Requires
+var Nightmare = require('nightmare')
+require('nightmare-window-manager')(Nightmare);
 var fs = require('fs');
 var supbase = require('../functions/supbase')
 
@@ -15,8 +17,19 @@ var password = configFile.password;
 var gameid = configFile.gameid;
 // End Config File Imports
 
+var outputFile = "output/output.csv"; // File which will contain the generated "username password" combinations.
+var outputFormat = "%NAME%,%INDEXDATA%"; // Format used to save the account data in outputFile. Supports %NICK%, %PASS%.
 var screenshotFolder = "output/screenshots/";
 
+// App data
+var useragent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36";
+var nightmare_opts = {
+	show: showWindow,
+	waitTimeout: 10000,
+	gotoTimeout: 5000,
+	loadTimeout: 5000,
+	'web-preferences': {'web-security': false}
+};
 // Prints nice little message
 console.log("Supremacy1814 Power Index statics by Joost Sijm.");
 
@@ -26,6 +39,10 @@ if (gameid.length > 7) {
 	console.log("Please use a valid game ID");
 	process.exit();
 }
+
+// LETSAHGO
+var nightmare = Nightmare(nightmare_opts);
+nightmare.useragent(useragent);
 
 // Helpers
 function handleError(err) {
@@ -37,25 +54,78 @@ function handleError(err) {
 
 supbase.Login(username, password).then(function(response) {
 	console.log(response);
-
-	supbase.GetGameUrl(gameid).then(function(gameurl) {
-		console.log(response);
-		supbase.GotoGame(gameurl).then(function(response) {
-			console.log("[DEBUG] Trying to open paper");
-			supbase.OpenPaper().then(function(response) {
-				supbase.fillpaper();
-			}, function(error) {
-				Console.log("Error opening newpaper");
-			});
-		}, function(error) {
-			console.log("Error opening Game");
-		});
-	}, function(error) {
-		console.log("Error getting url");
+	var gameurl = supbase.GetGameUrl(gameid);
+	supbase.GotoGame(gameurl).then(function(response) {
+		console.log("[DEBUG] Trying to open paper")
+		OpenPaper();
 	});
 }, function(error) {
-	console.log("Failed");
+	console.log("Failed", error);
 });
+
+function OpenPaper() {
+	console.log("[DEBUG] Opening Paper")
+	nightmare
+		.wait(2500)
+		.click('div[id=func_btn_newspaper]')
+		.then(function() {
+			FillPaper();
+		})
+		.catch(function(error) {
+			handleError(error);
+			OpenPaper();
+		})
+}
+function FillPaper() {
+	nightmare
+		.wait(2000)
+		.evaluate(function() {
+			return document.querySelector('input#func_newspaper_day_tf').value;
+		})
+		.then(function(totaldays) {
+			if(debug) { console.log("Total Days:" +  totaldays); }
+			indexdays = [];
+			RunNext(1, totaldays, indexdays);
+		})
+		.catch(function(error) {
+			handleError(error);
+			FillPaper();
+		})
+}
+function RunNext (day, totaldays, indexdays) {
+	if (day <= totaldays) {
+		if(debug) { console.log("Getting power index of day: " +  day); }
+		nightmare
+			.evaluate(function() {
+				document.querySelector('input#func_newspaper_day_tf').value = ''
+			})
+			.type('input[id=func_newspaper_day_tf]', day)
+			.wait(500)
+			.click('div[id=func_newspaper_ranking_show_all_button]')
+			.wait(500)
+			.evaluate(function() {
+				var data = []
+				for (player of document.querySelectorAll('div#newspaper_ranking_single ol li')) {
+					playerdata = [];
+					playerdata[0] = player.querySelector('div.autoResizeLine').innerHTML.trim()
+					playerdata[1] = player.querySelector('div.ranking_points').innerHTML.trim()
+					data.push(playerdata)
+				}
+				return data
+			})
+			.then(function(dayindex) {
+				indexdays.push(dayindex)
+			});
+		nightmare
+			.wait(1500)
+			.run(function() {
+				RunNext(day+1, totaldays, indexdays);
+			});
+	}
+	else {
+		processdays(indexdays)
+	}
+}
 
 function processdays(indexdays) {
 	console.log("Exit Nightmare");
