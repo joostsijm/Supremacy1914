@@ -49,7 +49,7 @@ function fillempty(playerlog, lenght) {
 	return playerlog;
 }
 function writeLogFile(mixedDays) {
-	fs.appendFile("./output.csv", '', function(err) {
+	fs.writeFile("./output.csv", '', function(err) {
 		if(err) {
 			return console.log(err);
 		}
@@ -62,7 +62,7 @@ function writeLogFile(mixedDays) {
 			if(err) {
 				return console.log(err);
 			}
-			console.log("The file was saved!");
 		}); 
 	}
+	console.log("The file was saved!");
 }
