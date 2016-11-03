@@ -1,17 +1,15 @@
 var config = {
 	// Options
-screenshotResult:true,
-// Saves a screenshot even if registration fails when set to true
-screenshotOnFailure:true,
-	
-	// Game Options 
-// Keep the '', Username. 
-username:"REPLACE",
-// This to your chosen password.
-password:"REPLACE",
-// Game ID to get the power index from
-gameid:"REPLACE"
+	// Saves a screenshot even if registration fails when set to true
+	screenshotResult:true,
 
+	// Game Options 
+	// Your supremacy1914 username. 
+	username:"REPLACE",
+	// This is password of your supremacy1914 account.
+	password:"REPLACE",
+	// Game ID to get the power index from.
+	gameid:"REPLACE"
 };
 
 module.exports = config;
