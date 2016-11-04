@@ -147,19 +147,29 @@ function RunNext (day, totaldays, indexdays) {
 			})
 			.type('input[id=func_newspaper_day_tf]', day)
 			.wait(500)
-			.click('div[id=func_newspaper_ranking_show_all_button]')
+			.click('li[id=func_tab_newspaper_ranking_team]')
 			.wait(500)
 			.evaluate(function() {
 				var data = []
-				for (player of document.querySelectorAll('div#newspaper_ranking_single ol li')) {
+				for (player of document.querySelectorAll('div#newspaper_ranking_team ol li')) {
 					playerdata = [];
-					playerdata[0] = player.querySelector('div.autoResizeLine').innerHTML.trim()
+					for (var i = 0; i < player.childNodes.length; i++) {
+						var curNode = player.childNodes[i];
+						whitespace = /^\s*$/;
+						console.log(curNode.nodeName,curNode.nodeType,whitespace.test(curNode.nodeValue));
+						if (curNode.nodeName === "#text" && !(whitespace.test(curNode.nodeValue))) {
+							playerdata[0] = curNode.nodeValue.trim();
+							break;
+						}
+					}
 					playerdata[1] = player.querySelector('div.ranking_points').innerHTML.trim()
 					data.push(playerdata)
 				}
 				return data
 			})
 			.then(function(dayindex) {
+				console.log("Getting coalition")
+				console.dir(dayindex);
 				indexdays.push(dayindex)
 			});
 		nightmare
@@ -186,15 +196,17 @@ function daymix(dayindex) {
 	output = [];
 	output[0] = [];
 	for(var i=0; i<dayindex.length; i++) {
-		for(var p=1; p<dayindex[i].length; p++) {
+		for(var p=0; p<dayindex[i].length; p++) {
 			playerindex = output[0].indexOf(dayindex[i][p][0]);
 			playerindex++;
 			if(playerindex == '0') {
 				lenght = output.length;
-				output[lenght] = [];
-				output[lenght].push(dayindex[i][p][0]);
-				output[lenght] = fillempty(output[lenght], i);
-				output[lenght].push(dayindex[i][p][1]);
+				playerlog = [];
+				playerlog.push(dayindex[i][p][0]);
+				playerlog = fillempty(playerlog, i);
+				console.dir(playerlog)
+				playerlog.push(dayindex[i][p][1]);
+				output[lenght] = playerlog;
 				output[0].push(dayindex[i][p][0]);
 			}
 			else {
@@ -208,14 +220,20 @@ function daymix(dayindex) {
 			}
 		}
 	}
-	output[playerindex] = fillempty(output[playerindex], i);
 	return output;
 }
-function fillempty(playerlog, lenght) {
-	if(playerlog.length <= lenght) {
-		for(var u=playerlog.lenght; u<=lenght; u++) {
-			playerlog.push('');
+function fillempty(playerlog, length) {
+	console.log('[DEBUG] Fill empty')
+	if(playerlog.length <= length) {
+		console.log("playerlog length: " + playerlog.length)
+		console.log("[DEBUG] playerlog <= lenght")
+		for(var k=playerlog.length; k<=length; k++) {
+			playerlog.push('0');
+			console.log("push empty")
 		}
+	}
+	else {
+		console.log("[DEBUG]   lenght <= playerlog ")
 	}
 	return playerlog;
 }
