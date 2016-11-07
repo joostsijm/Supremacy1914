@@ -43,7 +43,7 @@ supbase.Login(username, password).then(function(response) {
 		supbase.GotoGame(gameurl).then(function(response) {
 			console.log("[DEBUG] Trying to open paper");
 			supbase.OpenPaper().then(function(response) {
-				supbase.fillpaper();
+				supbase.FillPaper();
 			}, function(error) {
 				Console.log("Error opening newpaper");
 			});
