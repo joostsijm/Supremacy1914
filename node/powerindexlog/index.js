@@ -1,6 +1,6 @@
 // Requires
 var fs = require('fs');
-var supbase = require('../functions/supbase')
+var supbase = require('../supbase')
 
 // Settings
 var debug = true;
