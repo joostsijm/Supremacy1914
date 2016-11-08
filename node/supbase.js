@@ -21,7 +21,47 @@ module.exports = (function() {
 	var nightmare = Nightmare(nightmare_opts);
 	nightmare.useragent(useragent);
 
-
+	function LoopDays(totaldays) {
+		return new Promise(function(resolve, reject) {
+			console.log("Start looping days")
+			indexdays = [];
+			RunNext(1, totaldays, indexdays);
+			function RunNext(day, totaldays, indexdays) {
+				if (day <= totaldays) {
+					if(debug) { console.log("Getting power index of day: " +  day); }
+					nightmare
+						.evaluate(function() {
+							document.querySelector('input#func_newspaper_day_tf').value = ''
+						})
+						.type('input[id=func_newspaper_day_tf]', day)
+						.wait(500)
+						.click('div[id=func_newspaper_ranking_show_all_button]')
+						.wait(500)
+						.evaluate(function() {
+							var data = []
+							for (player of document.querySelectorAll('div#newspaper_ranking_single ol li')) {
+								playerdata = [];
+								playerdata[0] = player.querySelector('div.autoResizeLine').innerHTML.trim()
+								playerdata[1] = player.querySelector('div.ranking_points').innerHTML.trim()
+								data.push(playerdata)
+							}
+							return data
+						})
+						.then(function(dayindex) {
+							indexdays.push(dayindex)
+						});
+					nightmare
+						.wait(1500)
+						.run(function() {
+							RunNext(day+1, totaldays, indexdays);
+						});
+				}
+				else {
+					resolve(indexdays);
+				}
+			}
+		});
+	}
 
 	return {
 		Login: function (username, password) {
@@ -106,52 +146,17 @@ module.exports = (function() {
 					})
 					.then(function(totaldays) {
 						if(debug) { console.log("Total Days:" +  totaldays); }
-						indexdays = [];
-						resolve(totaldays,indexdays)
+						LoopDays(totaldays).then(function(response) {
+							resolve(response)
+						}, function(error) {
+							console.log("Error!")
+						})
 					})
 					.catch(function(error) {
 						handleError(error);
 						FillPaper();
 					});
 			});
-		},
-		LoopDays: function(totaldays, indexdays) {
-			return new Promise(function(resolve, reject) {
-				function RunNext(day, totaldays, indexdays) {
-					if (day <= totaldays) {
-						if(debug) { console.log("Getting power index of day: " +  day); }
-						nightmare
-							.evaluate(function() {
-								document.querySelector('input#func_newspaper_day_tf').value = ''
-							})
-							.type('input[id=func_newspaper_day_tf]', day)
-							.wait(500)
-							.click('div[id=func_newspaper_ranking_show_all_button]')
-							.wait(500)
-							.evaluate(function() {
-								var data = []
-								for (player of document.querySelectorAll('div#newspaper_ranking_single ol li')) {
-									playerdata = [];
-									playerdata[0] = player.querySelector('div.autoResizeLine').innerHTML.trim()
-									playerdata[1] = player.querySelector('div.ranking_points').innerHTML.trim()
-									data.push(playerdata)
-								}
-								return data
-							})
-							.then(function(dayindex) {
-								indexdays.push(dayindex)
-							});
-						nightmare
-							.wait(1500)
-							.run(function() {
-								RunNext(day+1, totaldays, indexdays);
-							});
-					}
-					else {
-						resolve(indexdays);
-					}
-				}
-			})
 		}
 	}
 })();
