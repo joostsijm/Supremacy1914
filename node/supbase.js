@@ -82,7 +82,16 @@ module.exports = (function() {
 							if(debug) { console.log("[DEBUG] Filled in form."); }
 						}
 						else if(debug) { console.log("[DEBUG] Already logged in.") }
-						resolve("Authorization succesfull.");
+						nightmare
+							.exists('form[id=sg_login_form]')
+							.then(function(autherror) {
+								if(autherror) {
+									reject();
+								}
+								else {
+									resolve();
+								}
+							});
 					});
 			});
 		},

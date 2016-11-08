@@ -36,15 +36,13 @@ function handleError(err) {
 }
 
 supbase.Login(username, password).then(function(response) {
-	console.log(response);
-
 	supbase.GetGameUrl(gameid).then(function(gameurl) {
 		console.log(response);
 		supbase.GotoGame(gameurl).then(function(response) {
 			console.log("[DEBUG] Trying to open paper");
 			supbase.OpenPaper().then(function(response) {
 				supbase.FillPaper().then(function(response) {
-					console.log("Back! " + response);
+					processdays(response)
 				}, function(error) {
 					console.log("Error looping paper")
 				});
@@ -63,9 +61,6 @@ supbase.Login(username, password).then(function(response) {
 
 function processdays(indexdays) {
 	console.log("Exit Nightmare");
-	nightmare
-		.end()
-		.then()
 	var mixedDays = daymix(indexdays)
 	writeLogFile(mixedDays)
 }
@@ -74,7 +69,7 @@ function daymix(dayindex) {
 	output = [];
 	output[0] = [];
 	for(var i=0; i<dayindex.length; i++) {
-		for(var p=1; p<dayindex[i].length; p++) {
+		for(var p=0; p<dayindex[i].length; p++) {
 			playerindex = output[0].indexOf(dayindex[i][p][0]);
 			playerindex++;
 			if(playerindex == '0') {
@@ -108,7 +103,7 @@ function fillempty(playerlog, lenght) {
 	return playerlog;
 }
 function writeLogFile(mixedDays) {
-	fs.writeFile("./output.csv", '', function(err) {
+	fs.writeFile("./" + gameid + "output.csv", '', function(err) {
 		if(err) {
 			return console.log(err);
 		}
@@ -117,7 +112,7 @@ function writeLogFile(mixedDays) {
 	for(var i=1; i<mixedDays.length; i++) {
 		mixedDays[i].push('\n');
 		mixedDays[i][0] = '\"' + mixedDays[i][0] + '\"';
-		fs.appendFile("./output.csv", mixedDays[i], function(err) {
+		fs.appendFile("./" + gameid + "output.csv", mixedDays[i], function(err) {
 			if(err) {
 				return console.log(err);
 			}
