@@ -22,7 +22,7 @@ console.log("Supremacy1814 Power Index statics by Joost Sijm.");
 
 // Settings check
 if (gameid.length > 7) {
-	console.log("Error: length of game ID is too long to be valid.");
+	console.log("[ERROR] length of game ID is too long to be valid.");
 	console.log("Please use a valid game ID");
 	process.exit();
 }
@@ -35,29 +35,42 @@ function handleError(err) {
 	return err;
 }
 
-supbase.Login(username, password).then(function(response) {
+start();
+
+function start() {
+	supbase.Login(username, password).then(function() {
+		OpenGame();
+	}, function(error) {
+		console.log("Failed");
+	});
+}
+
+function OpenGame () {
 	supbase.GetGameUrl(gameid).then(function(gameurl) {
-		console.log(response);
-		supbase.GotoGame(gameurl).then(function(response) {
-			console.log("[DEBUG] Trying to open paper");
-			supbase.OpenPaper().then(function(response) {
-				supbase.FillPaper().then(function(response) {
-					processdays(response)
-				}, function(error) {
-					console.log("Error looping paper")
-				});
-			}, function(error) {
-				Console.log("Error opening newpaper");
-			});
+		supbase.GotoGame(gameurl).then(function() {
+			OpenPaper();
+		}, function() {
+			console.log("[ERROR] Opening Game");
+		});
+	}, function() {
+		console.log("[ERROR] Getting url");
+		OpenGame();
+	});
+}
+
+function OpenPaper() {
+	console.log("[DEBUG] Trying to open paper");
+	supbase.OpenPaper().then(function(response) {
+		supbase.FillPaper().then(function(response) {
+			processdays(response)
 		}, function(error) {
-			console.log("Error opening Game");
+			console.log("[ERROR] Looping paper")
 		});
 	}, function(error) {
-		console.log("Error getting url");
+		Console.log("[ERROR] Attempt to open paper");
+		OpenPaper();
 	});
-}, function(error) {
-	console.log("Failed");
-});
+}
 
 function processdays(indexdays) {
 	console.log("Exit Nightmare");

@@ -1,5 +1,3 @@
-// tools.js
-// ========
 module.exports = (function() {
 	var Nightmare = require('nightmare')
 	require('nightmare-window-manager')(Nightmare);
@@ -21,6 +19,44 @@ module.exports = (function() {
 	var nightmare = Nightmare(nightmare_opts);
 	nightmare.useragent(useragent);
 
+	function LoadMore() {
+		return new Promise(function(resolve, reject) {
+			nightmare
+				.wait(200)
+				.click('div[id=func_newspaper_ranking_show_all_button]')
+				.then(function() {
+					resolve();
+				})
+				.catch(function() {
+					loadmore();
+				});
+		});
+	}
+
+	function FetchDay() {
+		return new Promise(function(resolve, reject) {
+			nightmare
+				.wait(200)
+				.evaluate(function() {
+					var data = []
+					for (player of document.querySelectorAll('div#newspaper_ranking_single ol li')) {
+						playerdata = [];
+						playerdata[0] = player.querySelector('div.autoResizeLine').innerHTML.trim()
+						playerdata[1] = player.querySelector('div.ranking_points').innerHTML.trim()
+						data.push(playerdata)
+					}
+					return data
+				})
+				.then(function(dayindex) {
+					indexdays.push(dayindex)
+					resolve();
+				})
+				.catch(function() {
+					FetchDay();
+				});
+		})
+	}
+
 	function LoopDays(totaldays) {
 		return new Promise(function(resolve, reject) {
 			console.log("Start looping days")
@@ -30,31 +66,16 @@ module.exports = (function() {
 				if (day <= totaldays) {
 					if(debug) { console.log("Getting power index of day: " +  day); }
 					nightmare
-						.evaluate(function() {
-							document.querySelector('input#func_newspaper_day_tf').value = ''
-						})
+						.type('input[id=func_newspaper_day_tf]')
 						.type('input[id=func_newspaper_day_tf]', day)
-						.wait(500)
-						.click('div[id=func_newspaper_ranking_show_all_button]')
-						.wait(500)
-						.evaluate(function() {
-							var data = []
-							for (player of document.querySelectorAll('div#newspaper_ranking_single ol li')) {
-								playerdata = [];
-								playerdata[0] = player.querySelector('div.autoResizeLine').innerHTML.trim()
-								playerdata[1] = player.querySelector('div.ranking_points').innerHTML.trim()
-								data.push(playerdata)
-							}
-							return data
-						})
-						.then(function(dayindex) {
-							indexdays.push(dayindex)
+					LoadMore().then(function() {
+						FetchDay().then(function() {
+							nightmare
+								.run(function() {
+									RunNext(day+1, totaldays, indexdays);
+								});
 						});
-					nightmare
-						.wait(1500)
-						.run(function() {
-							RunNext(day+1, totaldays, indexdays);
-						});
+					});
 				}
 				else {
 					resolve(indexdays);
@@ -97,26 +118,32 @@ module.exports = (function() {
 		},
 		GetGameUrl: function(vargameid) {
 			return new Promise(function(resolve, reject) {
-				if(debug) { console.log("[DEBUG] Opening the game: " + vargameid); }
+				if(debug) { console.log("[DEBUG] Getting URL from game: " + vargameid); }
 				nightmare
+					.type('input[id=sg_game_search_field]')
 					.type('input[id=sg_game_search_field]', vargameid)
 					.click('div[id=sg_game_search_arrow]')
-					.wait(1200)
+					.wait(200)
 					.click('tbody[id=sg_game_table_content] div[id*=test_game_] img[src*=guestlogin]')
 					.waitWindowLoad()
 					.currentWindow()
-					.then(function(currentwindow){
-						nightmare
-							.goto(currentwindow.url)
-							.evaluate(function() {
-								return document.getElementById("ifm").src;
-							})
-							.then(function(gameurl) {
-								console.log("Opening Game: " + vargameid)
-								if(debug) { console.log("[DEBUG] Game Url:" +  gameurl); }
-								var indexdays= [];
-								resolve(gameurl)
-							});
+					.then(function(currentwindow) {
+						var GameTitle = "Supremacy 1914 - " + vargameid.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+						if(currentwindow.title !== GameTitle) {
+							reject();
+						}
+						else {
+							nightmare
+								.goto(currentwindow.url)
+								.evaluate(function() {
+									return document.getElementById("ifm").src;
+								})
+								.then(function(gameurl) {
+									console.log("Opening Game: " + vargameid)
+									if(debug) { console.log("[DEBUG] Game Url:" +  gameurl); }
+									resolve(gameurl)
+								});
+						}
 					});
 			});
 		},
@@ -128,41 +155,40 @@ module.exports = (function() {
 					.wait(2500)
 					.then(function() {
 						if(debug) { console.log("[DEBUG] Game opened"); }
-						resolve("Game opened");
+						resolve();
 					});
 			});
 		},
 		OpenPaper: function() {
-			console.log("[DEBUG] Opening Paper")
 			return new Promise(function(resolve, reject) {
 				nightmare
-					.wait(500)
 					.click('div[id=func_btn_newspaper]')
 					.then(function() {
-						resolve("Succes");
+						if(debug) { console.log("[DEBUG] Paper opened"); }
+						resolve();
 					})
 					.catch(function(error) {
-						reject("Error");
+						if(debug) { console.log("[DEBUG] Error Opening paper"); }
+						reject();
 					});
 			});
 		},
 		FillPaper: function() {
 			return new Promise(function(resolve, reject) {
 				nightmare
-					.wait(2000)
+					.wait(1000)
 					.evaluate(function() {
 						return document.querySelector('input#func_newspaper_day_tf').value;
 					})
 					.then(function(totaldays) {
-						if(debug) { console.log("Total Days:" +  totaldays); }
+						if(debug) { console.log("[DEBUG] Total Days: " +  totaldays); }
 						LoopDays(totaldays).then(function(response) {
 							resolve(response)
 						}, function(error) {
-							console.log("Error!")
+							console.log("[ERROR] Looging the days")
 						})
 					})
 					.catch(function(error) {
-						handleError(error);
 						FillPaper();
 					});
 			});
