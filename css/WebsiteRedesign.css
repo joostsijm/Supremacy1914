@@ -1,0 +1,76 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+/* Name          : Supremacy 1914 Website Redesign
+ * Author        : Bergjnl
+ * Version       : 0.1.0
+ * Latest update : 2016-11-16
+ */
+@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
+	#sg_body tbody:first-child tr, #sg_menu_back, #sg_menu {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	#sg_menu_back, #sg_content_back {
+		width: 100%
+	}
+	#sg_menu_back {
+		width: 100%
+	}
+	#sg_menu {
+		overflow: visible;
+		width: 85%;
+	}
+	#sg_menu_social {
+		display: none;
+	}
+	#sg_menu_poster {
+		padding: 0;
+		width: 15%;
+		height: 110%
+	}
+	.sg_poster {
+		background-size: contain;
+		width: 100%;
+		height: 100%;
+	}
+	.sup_ads_news_top {
+		height: 10px;
+		width: 100%;
+		background: url(http://www.supremacy1914.nl/fileadmin/templates/supremacy_1914/images/101_header/v2_header_border_bottom_premium.gif);
+	}
+	#sg_paper_frame {
+		padding: 0;
+	}
+	.sg_mgpaper_header_w {
+		width: 96%;
+	}
+	#sg_mygames table {
+		width: 100%;
+	}
+	.sg_mgpaper_table_w {
+		width: 100%;
+	}
+	/* News page */
+	.sg_paper_header_height {
+		margin-top: 25px;
+	}
+	.sg_paper_header_w {
+		width: 81%;
+	}
+	.sg_paper_header {
+		background-position: center;
+	}
+	#sg_paper_content_s {
+		width: 90%;
+	}
+	/* All games */
+	.sg_tgpaper_header_height {
+		height: 100%;
+	}
+	.sg_tgpaper_header_w {
+		width: 96%;
+	}
+	.sg_mgpaper_footer {
+		width: 96%;
+		background-size: cover;
+	}
+}
