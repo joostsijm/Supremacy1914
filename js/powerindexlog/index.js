@@ -186,7 +186,7 @@ function daymix(dayindex) {
 	output = [];
 	output[0] = [];
 	for(var i=0; i<dayindex.length; i++) {
-		for(var p=1; p<dayindex[i].length; p++) {
+		for(var p=0; p<dayindex[i].length; p++) {
 			playerindex = output[0].indexOf(dayindex[i][p][0]);
 			playerindex++;
 			if(playerindex == '0') {
