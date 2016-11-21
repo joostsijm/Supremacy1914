@@ -1,7 +1,7 @@
 @namespace  "http://www.w3.org/1999/xhtml";
 /* Name          : Supremacy 1914 Responsive Design
  * Author        : Bergjnl
- * Version       : 0.0.3
+ * Version       : 0.0.4
  * Latest update : 2016-11-21
  */
 @-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
@@ -139,13 +139,18 @@
 		.sync_army span, .forced_march span {
 			display: none
 		}
-		/* Alliancy, Diplomacy, Production container */
-		#diplomacyContainer, #provinceProductionsContainer, #inGameAllianceContainer, #stockmarketContainer, #resourcesContainer {
+
+		/* Alliancy, Diplomacy, Production, Stockmarket, Resource, and PlayerDetail container */
+		#diplomacyContainer, #provinceProductionsContainer, #inGameAllianceContainer, #stockmarketContainer, #resourcesContainer, #playerDetailContainer {
 			top: 0 !important;
 			left: 0 !important;
 			width: 100% !important;
 			height: 100% !important;
 			z-index: 20002 !important;
+		}
+		/* Extra fix for resource and playerDetail container */
+		#resourcesContainer, #playerDetailContainer {
+			min-width: 0 !important;
 		}
 		/* Diplomacy window */
 		#diplomacy_threads .box_title {
@@ -192,7 +197,7 @@
 			background: rgba(255,255,255,0.21) !important;;
 			width: 50% !important;
 		}
-		.trade_button .autoResizeLine {
+		.trade_button .autoizeLine {
 			white-space: pre-line;
 		}
 		.func_show_create_trade {
@@ -209,7 +214,7 @@
 			height: 50px;
 		}
 		#func_diplomacy_table .selected .cell_messages {
-			width: 65px;
+			width: 45px;
 		}
 		.cell_messages {
 			padding: 0;
@@ -220,8 +225,19 @@
 		#func_diploTableScroll .overview {
 			height: 100%;
 		}
+		/* Removes the portrait, team */
+		@media screen and (max-width: 760px) {
+			#func_diplomacy_table .cell_portrait, #func_diplomacy_table .cell_team, .team_game_table .func_sort_by:nth-child(2)  {
+				display: none
+			}
+		}
+		/* Removes the playername, and message button. */
+		@media screen and (max-width: 640px) {
+			#func_diplomacy_table .cell_name, .team_game_table .func_sort_by:nth-child(3), #func_diplomacy_table .cell_messages {
+				display: none;
+			}
+		}
 		/* Stockmarket */
-		/* Settings button */
 		#clientControlsContainer {
 			top: 63px;
 		}
