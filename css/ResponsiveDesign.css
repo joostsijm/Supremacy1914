@@ -1,8 +1,8 @@
 @namespace  "http://www.w3.org/1999/xhtml";
 /* Name          : Supremacy 1914 Responsive Design
  * Author        : Bergjnl
- * Version       : 0.0.4
- * Latest update : 2016-11-21
+ * Version       : 0.0.9
+ * Latest update : 2016-11-22
  */
 @-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
 	@media screen and (max-width: 980px) {
@@ -122,7 +122,7 @@
 		}
 		/* Army Bar */
 		#armyBarContainer{
-			width: 100%;
+			width: 99%;
 			margin-left: 0;
 			left: 0;
 			transform: scale(1, 1) !important;
@@ -136,8 +136,22 @@
 			right: 0;
 			display: flex !important;
 		}
+		.army_bar_image_segment {
+			margin-left: 0;
+		}
 		.sync_army span, .forced_march span {
 			display: none
+		}
+		/* Army Order panel */
+		#commands_segment {
+			margin: 0;
+			height: 115px;
+		}
+		#commands_segment .command_name {
+			display: none;
+		}
+		#commands_segment .via_command {
+			padding: 0;
 		}
 
 		/* Alliancy, Diplomacy, Production, Stockmarket, Resource, and PlayerDetail container */
@@ -148,9 +162,82 @@
 			height: 100% !important;
 			z-index: 20002 !important;
 		}
-		/* Extra fix for resource and playerDetail container */
-		#resourcesContainer, #playerDetailContainer {
+		/* Extra fix for resource, province production and playerDetail container */
+		#resourcesContainer, #playerDetailContainer, #provinceProductionsContainer {
 			min-width: 0 !important;
+		}
+		/* Prdocution window */
+		#provinceProductionsContainer {
+			transform: none;
+		}
+		/* Production header */
+		.building_popup_content .building_header {
+			display: flex;
+			flex-wrap: wrap;
+			height: 0;
+		}
+		.production_slots {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.production_slots .func_constructions, .production_slots .func_productions {
+			width: 46%;
+			margin: 0 2%;
+		}
+		.production_slot {
+			width: 100%;
+		}
+		#func_production_tabs {
+			top: 180px;
+		}
+		@media screen and (max-width: 650px) {
+			.production_slot {
+				width: 100%;
+			}
+			.production_slots .func_constructions, .production_slots .func_productions {
+				width: 100%;
+				margin: 0;
+			}
+			#func_production_tabs {
+				top: 260px;
+			}
+		}
+		/* Production body */
+		.amount_cell {
+			display: none;
+		}
+		#table_prov_popup {
+			width: 100%;
+		}
+		.cost_cell {
+			height: auto;
+		}
+		.cost_table tbody {
+			display: flex;
+		}
+		.cost_table tbody tr {
+			display: flex;
+			flex-direction: column;
+			border: none !important;
+		}
+		.cost_table tbody tr td {
+			height: 16px;
+		}
+		@media screen and (max-width: 500px) {
+			.building_popup_content .building_details .glass_panel_tabs li::before, .building_popup_content .building_details .glass_panel_tabs li::after {
+				display: none;
+			}
+		}
+		/* Diplomacy header */
+		#func_diplomacy_header_table tr:last-child {
+			display: flex;
+			width: 100%;
+		}
+		#func_diplomacy_header_table tr:last-child th {
+			word-break: normal;
+			display: flex;
+			align-items: center;
 		}
 		/* Diplomacy window */
 		#diplomacy_threads .box_title {
@@ -207,8 +294,11 @@
 		.func_player_row {
 			display: flex;
 		}
-		table.team_game_table td.cell_country {
-			padding: 0;
+		table.team_game_table td {
+			/* Fixes the horizontal centering */
+			height: auto;
+			display: flex;
+			align-items: center;
 		}
 		.func_player_row {
 			height: 50px;
