@@ -2,12 +2,13 @@
 /* Name          : Supremacy 1914 Website Modification
  * Author        : Bergjnl
  * Version       : 0.1.1
- * Latest update : 2016-8-30
+ * Latest update : 2016-12-29
  * Desc          :
  *   Modification to the main website of supremacy,
- *   makes it look better and more usable.
+ *   Makes it look better and more usable.
+ *   Fixes some layout errors in the message window.
  */
-@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
+@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/play.php?.*') {
 	.sg_bg {
 		background: url("http://www.supremacy1914.com/fileadmin/templates/supremacy_1914/landing/7/lp7_back.jpg") no-repeat center top fixed;
 	}
@@ -37,5 +38,11 @@
 	}
 	.sg_premium_account_header_image {
 		display: none;
+	}
+	td.sg_pi1-newpost-left input {
+		width: 500px;
+	}
+	td.sg_pi1-newpost-right textarea {
+		width: 100%;
 	}
 }
