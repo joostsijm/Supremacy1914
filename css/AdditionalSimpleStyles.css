@@ -1,10 +1,10 @@
 @namespace  "http://www.w3.org/1999/xhtml";
 /* Name          : Supremacy 1914 additional Simple styles
  * Author        : Bergjnl
- * Version       : 0.13.0
- * Latest update : 2016-9-30
+ * Version       : 0.13.1
+ * Latest update : 2016-12-29
  */
-@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
+@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/play.php?.*') {
 	/* Removes AdsContainer on the left side of the sceen */
 	#inGameAdsContainer {
 		display: none !important;
@@ -129,6 +129,27 @@
 	}
 	#func_provinceWidgetTableHead td.active .province_list_upgrade_sorting_divider_active {
 		background-color: rgba(101,101,101,0.7);
+	}
+	/* Fix sidebar order */
+	.upgrade_icon {
+		margin: 0;
+	}
+	.prov_list_building_slot {
+		min-width: 37px;
+	}
+	#province_list_upgrade_icon_header, .column_upgrades > div {
+		display: flex;
+	}
+	.prov_list_sort_marker {
+		/* Removes the arrow on the wrong location */
+		display: none !important;
+	}
+	.province_list_upgrade_sorting_divider {
+		left: auto !important;
+		position: initial;
+	}
+	#province_list_upgrade_icon_header div:nth-child(4), .prov_list_building_slot:nth-child(4) {
+		order: 7
 	}
 	.glasspanel{
 		-moz-box-shadow: 0 0 0 1px #a0a0a0,1px 1px 0 1px #575757,-1px 0 2px 0 rgba(12,12,12,0.44) inset, 0px 0px 35px 0px rgba(0, 0, 0, 0.5);

@@ -1,16 +1,28 @@
 @namespace  "http://www.w3.org/1999/xhtml";
 /* Name          : Supremacy 1914 Responsive Design
  * Author        : Bergjnl
- * Version       : 0.0.2
- * Latest update : 2016-10-14
+ * Version       : 0.0.12
+ * Latest update : 2016-12-29
  */
-@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
+@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/play.php?.*') {
 	@media screen and (max-width: 980px) {
 		#miniProfileContainer {
 			display: none;
 		}
+		/* Menu on the bottom of the screen */
 		#menuContainer {
 			bottom: 20px;
+		}
+		ul.mainmenu {
+			display: flex;
+		}
+		ul.mainmenu li {
+			float: none;
+			padding: 0;
+		}
+		/* Removed empty children */
+		ul.mainmenu li:first-child, ul.mainmenu li:last-child {
+			margin: auto;
 		}
 		/* News article full with */
 		.newspaper_article {
@@ -38,6 +50,13 @@
 			}
 			#func_news_cat_filter li {
 				display: block;
+				flex-grow: 1;
+				width: 100%;
+				padding-top: 10px;
+			}
+			/* Removed text */
+			#newspaper_switch_day_text {
+				display: none; 
 			}
 		}
 		/* Fixing the resource bar */
@@ -103,7 +122,7 @@
 		}
 		/* Army Bar */
 		#armyBarContainer{
-			width: 100%;
+			width: 99%;
 			margin-left: 0;
 			left: 0;
 			transform: scale(1, 1) !important;
@@ -117,25 +136,127 @@
 			right: 0;
 			display: flex !important;
 		}
+		.army_bar_image_segment {
+			margin-left: 0;
+		}
 		.sync_army span, .forced_march span {
 			display: none
 		}
-		/* Alliancy */
-		#inGameAllianceContainer {
+		/* Army Order panel */
+		#commands_segment {
+			margin: 0;
+			height: 115px;
+		}
+		#commands_segment .command_name {
+			display: none;
+		}
+		#commands_segment .via_command {
+			padding: 0;
+		}
+		/* Alliancy, Diplomacy, Production, Stockmarket, Resource, unitDetail, and PlayerDetail container */
+		#diplomacyContainer, #provinceProductionsContainer, #inGameAllianceContainer, #stockmarketContainer, #resourcesContainer, #playerDetailContainer, #unitDetailContainer {
 			top: 0 !important;
 			left: 0 !important;
 			width: 100% !important;
 			height: 100% !important;
 			z-index: 20002 !important;
 		}
-		/* Diplomacy */
-		#diplomacyContainer {
-			top: 0 !important;
-			left: 0 !important;
-			width: 100% !important;
-			height: 100% !important;
-			z-index: 20002 !important;
+		/* Extra fix for resource, province production, unitDetail, and playerDetail container */
+		#resourcesContainer, #playerDetailContainer, #provinceProductionsContainer, #unitDetailContainer {
+			min-width: 0 !important;
 		}
+		/* Prdocution window */
+		#provinceProductionsContainer {
+			transform: none;
+		}
+		/* unitDetail */
+		#unitDetailContainer .func_scrollable .overview {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		#unitDetailContainer .func_scrollable .overview > div {
+			width: 100%;
+		}
+		#unitDetailContainer .func_scrollable .overview .unit-description {
+			text-align: center;
+		}
+		/* Production header */
+		.building_popup_content .building_header {
+			display: flex;
+			flex-wrap: wrap;
+			height: 0;
+		}
+		.production_slots {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.production_slots .func_constructions, .production_slots .func_productions {
+			width: 46%;
+			margin: 0 2%;
+		}
+		.production_slot {
+			width: 100%;
+		}
+		#func_production_tabs {
+			top: 180px;
+		}
+		@media screen and (max-width: 650px) {
+			.production_slot {
+				width: 100%;
+			}
+			.production_slots .func_constructions, .production_slots .func_productions {
+				width: 100%;
+				margin: 0;
+			}
+			#func_production_tabs {
+				top: 260px;
+			}
+		}
+		/* Production body */
+		.amount_cell {
+			display: none;
+		}
+		#table_prov_popup {
+			width: 100%;
+		}
+		.cost_cell {
+			height: auto;
+		}
+		.cost_table tbody {
+			display: flex;
+		}
+		.cost_table tbody tr {
+			display: flex;
+			flex-direction: column;
+			border: none !important;
+		}
+		.cost_table tbody tr td {
+			height: 16px;
+		}
+		@media screen and (max-width: 500px) {
+			.building_popup_content .building_details .glass_panel_tabs li::before, .building_popup_content .building_details .glass_panel_tabs li::after {
+				display: none;
+			}
+		}
+		/* Diplomacy header */
+		#func_diplomacy_header_table tr:last-child {
+			display: flex;
+			width: 100%;
+		}
+		#func_diplomacy_header_table tr:last-child th {
+			word-break: normal;
+			display: flex;
+			align-items: center;
+			height: 35px;
+		}
+		.diplomacy_table_head table th .sort_action {
+			margin: -6px 0 0;
+		}
+		.player_table_wrapper {
+			padding: 0;
+		}
+		/* Diplomacy window */
 		#diplomacy_threads .box_title {
 			text-align: center;
 			padding-top: 10px;
@@ -180,21 +301,72 @@
 			background: rgba(255,255,255,0.21) !important;;
 			width: 50% !important;
 		}
-		.trade_button .autoResizeLine {
+		.trade_button .autoizeLine {
 			white-space: pre-line;
 		}
 		.func_show_create_trade {
 			height: 50px;
 		}
-		/* Stockmarket */
-		#stockmarketContainer {
-			top: 0 !important;
-			left: 0 !important;
-			width: 100% !important;
-			height: 100% !important;
-			z-index: 20002 !important;
+		/* Diplomacy player list */
+		.func_player_row {
+			display: flex;
 		}
-		/* Settings button */
+		table.team_game_table td {
+			/* Fixes the horizontal centering */
+			height: auto;
+			display: flex;
+			align-items: center;
+		}
+		.func_player_row {
+			height: 50px;
+		}
+		#func_diplomacy_table .selected .cell_messages {
+			width: 45px;
+		}
+		.cell_messages {
+			padding: 0;
+		}
+		.cell_player_type .func_player_invite {
+			padding: 5px;
+		}
+		#func_diploTableScroll .overview {
+			height: 100%;
+		}
+		@media screen and (max-width: 760px) {
+			/* Removes the portrait, team */
+			#func_diplomacy_table .cell_portrait, 
+			#func_diplomacy_table .cell_team, 
+			.team_game_table tr:last-child th:nth-child(2),
+			.team_game_table tr:last-child th:nth-child(9),
+			.team_game_table tr:last-child th:nth-child(10) {
+				display: none !important;
+			}
+			.diplomacy_table_head {
+				top: 85px;
+			}
+			.diplomacy_table_body {
+				top: 120px;
+			}
+			#func_page_diplomacy_table div:first-child tr {
+				display: flex;
+			}
+		}
+		@media screen and (max-width: 640px) {
+			/* Removes the playername, and message button. */
+			#func_diplomacy_table .cell_name, 
+			.team_game_table tr:last-child th:nth-child(3),
+			#func_diplomacy_table .cell_messages {
+				display: none !important;
+			}
+		}
+		@media screen and (max-width: 540px) {
+			/* Removes the number of provinces */
+			#func_diplomacy_table .cell_provinces,
+			.team_game_table tr:last-child th:nth-child(4) {
+				display: none !important;
+			}
+		}
+		/* Stockmarket */
 		#clientControlsContainer {
 			top: 63px;
 		}
@@ -208,16 +380,6 @@
 			display: none !important;
 		}
 		/* Resource settings */
-		#resourcesContainer {
-			top: 0 !important;
-			left: 0 !important;
-			width: 100% !important;
-			height: 100% !important;
-			z-index: 20002 !important;
-			position: inherit !important;
-			min-width: 0 !important;
-			/* Position isn't needed, but ik makes the piramid looks nice :) */
-		}
 		.resources_page {
 			width: 100%;
 			padding: 0;
@@ -252,6 +414,6 @@
 			#func_resource_overview thead {
 				display: none
 			}
-		} 
+		}
 	}
 }
