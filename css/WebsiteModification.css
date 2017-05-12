@@ -8,7 +8,7 @@
  *   Makes it look better and more usable.
  *   Fixes some layout errors in the message window.
  */
-@-moz-document regexp('http(s)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/index.php?.*') {
+@-moz-document regexp('(http|https)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/index.php?.*') {
 	.sg_bg {
 		background: url("http://www.supremacy1914.com/fileadmin/templates/supremacy_1914/landing/7/lp7_back.jpg") no-repeat center top fixed;
 	}
