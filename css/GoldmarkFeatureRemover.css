@@ -33,28 +33,17 @@
 	}
 
 	#provinceBarContainer .province_bar_segment {
-		width: 80px !important;
+		width: 77px !important;
+	}
+	#provinceBarContainer .province_bar_content > .province_bar_segment:nth-child(2) .province_bar_segment_content {
+		display: flex;
+	}
+	#provinceBarContainer .province_bar_segment:nth-child(3) .province_bar_segment_content {
+		display: flex;
 	}
 
-	#province_bar_title h3.province_bar_title_cell:nth-child(11) {
-		width: 90px !important;
-	}
-
-	#provinceBarContainer .province_bar_segment:nth-child(5) {
-		width: 90px !important;
-	}
-
-	#province_bar_title h3.province_bar_title_cell:nth-child(13) {
-		width: 62px !important;
-	}
-
-	#provinceBarContainer .province_bar_segment:nth-child(6) {
-		width: 58px !important;
-	}
-
-	/* Removes the Collection point sub-text becausse it doesn't fit */
-	#provinceBarContainer .province_bar_segment:nth-child(6) span {
-		display: none;
+	#province_bar_title h3.province_bar_title_cell {
+		width: 81px !important;
 	}
 
 	/* Fix the width of the provincebar and re-center it again */
@@ -65,7 +54,7 @@
 
 	/* Correct the width of the procincebar */
 	#province_bar_title {
-		width: 680px;
+		width: 681px;
 	}
 
 	/* Removes protuction and build speedup buttons */
