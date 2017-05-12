@@ -1,11 +1,9 @@
 # Supremacy1914
 Various code and stylesheets for the [Supremacy1914](http://www.supremacy1914.com/) web game.
 
-## Styles
-
-[Detail page](https://github.com/joostsijm/Supremacy1914/tree/master/css#supremacy1914-styles).
-Can be installed from [here](https://userstyles.org/users/333725).  
-Requirements: [Stylish](https://userstyles.org/).
+## [Styles](https://github.com/joostsijm/Supremacy1914/tree/master/css#supremacy1914-styles)
+Some can be installed from userstyles [here](https://userstyles.org/users/333725).  
+Requirements: [Stylish](https://userstyles.org/)
 
 ### List of Styles
 
@@ -16,4 +14,4 @@ Requirements: [Stylish](https://userstyles.org/).
 
 ## Javascript
 
-soon
+Some Javascript and Node.js projects I've been working on. Use at your own risk, but they problably won't harm.
