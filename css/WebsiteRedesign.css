@@ -1,10 +1,43 @@
 @namespace url(http://www.w3.org/1999/xhtml);
 /* Name          : Supremacy 1914 Website Redesign
  * Author        : Bergjnl
- * Version       : 0.1.0
- * Latest update : 2016-11-16
+ * Version       : 0.1.1
  */
-@-moz-document regexp('http(s)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/index.php.*') {
+@-moz-document regexp('(http|https)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/index.php.*') {
+	/* Remove popup */
+	#dialog_overlay {
+		display: none !important;
+	}
+	.balloon_tapete {
+		display: none !important;
+	}
+	/* Smaller header */
+	#sg_header, #sg_header_banner {
+		height: 160px;
+	}
+	#sg_header_lang_select {
+		padding-right: 0;
+	}
+	#sg_header_lang_select #leftpart {
+		display: none;
+	}
+	#sg_top_button_wrap {
+		display: none;
+	}
+	/* Login Box */
+	.sg_status_header_li {
+		background-image: url(http://static2.bytro.com/fileadmin/templates/supremacy_1914/images/102_menue/menue_back.jpg);
+	}
+	#sg_status_bl {
+		width: 210px;
+		background: none;
+	}
+	.sg_loginbox_goldmark_bg {
+		display: none;
+	}
+	.sg_loginbox_goldmark_bg > div {
+		display: none;
+	}
 	/* Menu on top of your screen */
 	.tmp_table > tbody > tr:first-child  , #sg_menu_back, #sg_menu {
 		display: flex;
@@ -13,12 +46,12 @@
 	#sg_menu_back, #sg_content_back {
 		width: 100%
 	}
-	#sg_menu_back {
-		width: 100%
-	}
 	#sg_menu {
 		overflow: visible;
 		width: 85%;
+	}
+	.sg_menu_c {
+		min-height: 83px;
 	}
 	#sg_menu_social {
 		display: none;
@@ -33,10 +66,23 @@
 		width: 100%;
 		height: 100%;
 	}
+	.sg_poster_addv_premium_acc_pic {
+		background: url("https://www.supremacy1914.com/fileadmin/templates/supremacy_1914/images/poster/new_view.gif") no-repeat left top;
+		height: 135px;
+		left: 0;
+		background-size: 130px;
+		margin-top: 10px;
+	}
+	.sg_poster_addv_premium_acc_logo {
+		display: none;
+	}
+	.sg_poster_addv_premium_acc_text {
+		display: none;
+	}
 	.sup_ads_news_top {
 		height: 10px;
 		width: 100%;
-		background: url(http://www.supremacy1914.nl/fileadmin/templates/supremacy_1914/images/101_header/v2_header_border_bottom_premium.gif);
+		background: url(http://static2.bytro.com/fileadmin/templates/supremacy_1914/images/101_header/v2_header_border_bottom.gif);
 	}
 	#sg_paper_frame {
 		padding: 0;
