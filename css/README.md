@@ -8,7 +8,7 @@ Requirements: [Stylish](https://userstyles.org/).
 ### [Additional Simple Styles](https://userstyles.org/styles/128056/supremacy-1914-additional-simple-styles)
 
 file: [css/AdditionalSimpleStyles.css](https://github.com/joostsijm/Supremacy1914/blob/master/css/AdditionalSimpleStyles.css)  
-Additional CSS rules to make Supremacy1914  more playable.
+Additional CSS rules to make Supremacy1914 more playable.
 * Full width newspaper
 * Removed ad container
 * Fixes in layout errors
@@ -43,3 +43,10 @@ Modification to the main website of supremacy making it look better and more usa
 * Background
 * Added scroll bar to player list next to games
 * Fixes to game comments
+
+### Website Redesign
+
+file: [css/WebsiteRedesign.css](https://github.com/joostsijm/Supremacy1914/blob/master/css/WebsiteRedesign.css)  
+A redesign of the main Supremacy website. Aiming to make it more functional without clutter.
+* Horizontal menu
+* Wide pages
