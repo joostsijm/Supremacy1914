@@ -13,7 +13,7 @@
  * Goldmark price dispay in support our troops window
  * Popup window displaying goldmark ad
  */
-@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
+@-moz-document regexp('http(s)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
 	/* Removes increase and decrease morale buttons */
 	#func_provbar_incr_morale, #func_provbar_decr_morale, #func_armybar_incr_morale{
 		display: none;

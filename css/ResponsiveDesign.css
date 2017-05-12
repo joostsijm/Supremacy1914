@@ -4,7 +4,7 @@
  * Version       : 0.0.12
  * Latest update : 2016-12-29
  */
-@-moz-document regexp('http://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/play.php?.*') {
+@-moz-document regexp('http(s)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/play.php?.*') {
 	@media screen and (max-width: 980px) {
 		#miniProfileContainer {
 			display: none;
