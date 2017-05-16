@@ -89,6 +89,21 @@
 		float: right;
 	}
 
+	/* Change article layout */
+	#articles #articles {
+		column-count: 2;
+		column-gap: 0;
+	}
+	.newspaper_article {
+		width: auto;
+		page-break-inside: avoid;
+		break-inside: avoid;
+		float: none;
+	}
+	.newspaper_article_pad_right {
+		padding: 0;
+	}
+
 	/* Easy fix for the client controls that didn't align properly */
 	#clientControlsContainer .client_controls {
 		margin-left: 75px;
@@ -191,5 +206,10 @@
 	/* Profile window height */
 	#playerDetailContainer {
 		height: 512px !important;
+	}
+}
+@media (min-width: 1880px) {
+	#articles #articles {
+		column-count: 3;
 	}
 }
