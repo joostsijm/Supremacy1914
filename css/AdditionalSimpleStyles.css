@@ -20,6 +20,9 @@
 		display: none;
 	}
 
+	/* Bottom bar */
+	/**/
+
 	/* Removes left and right buttons from provincie footer menu */
 	#func_provbar_iter_left,#func_provbar_iter_right {
 		display: none !important;
@@ -28,6 +31,11 @@
 	/* Removes left and right buttons from troops footer menu */
 	#func_armybar_iter_left,#func_armybar_iter_right {
 		display: none !important;
+	}
+
+	/* Remove scrollbar, but leave scrollable */
+	#army_bar #status_segment .scrollbar{
+		display: none;
 	}
 
 	/* Removes incorrect popups from screen */
