@@ -79,12 +79,29 @@
 			#clientControlsContainer {
 				top: 92px !important;
 			}
+			.province_bar_content > .province_bar_segment {
+				display: none;
+			}
+			#func_province_commands {
+				width: 100%;
+			}
 		} 
 		/* Province bar */
 		.province_bar_segment .province_bar_button {
 			width: 100%;
 			margin-left: 0px;
 			height: 100%;
+		}
+		.province_bar_content > .province_bar_segment {
+			width: 25% !important;
+		}
+		#func_province_commands {
+			width: 65%;
+		}
+		#provinceBarContainer .province_bar_segment {
+			width: 18% !important;
+			padding: 0 2%;
+			margin-right: 1%;
 		}
 		#func_spyprov_reports {
 			display: none;
@@ -121,34 +138,12 @@
 
 			/* Army bar */
 			/* */
-			#units_segment {
-				width: 40%;
-			}
 			.army_bar_image_segment {
-				position: absolute;
-				width: 40%;
-			}
-			.army_bar_image_segment .army_image {
 				display: none;
-			}
-			.army_bar_image_segment .glass_panel_content {
-				-moz-box-shadow: none;
-				-webkit-box-shadow: none;
-				box-shadow: none;
-				background: none;
-			}
-			.army_bar_image_segment .province_bar_segment_footer {
-				background: none;
 			}
 
 			/* Province bar*/
 			/* */
-			#provinceBarContainer .big_segment:first-child {
-				width: 86px !important;
-			}
-			#provinceBarContainer .province_bar_segment {
-				width: 40px !important;
-			}
 			#func_province_commands .province_bar_segment_footer .autoResizeLine {
 				display: none;
 			}
@@ -157,10 +152,7 @@
 			left: 0;
 			right: 0;
 			display: flex !important;
-			align-content: center;
-			align-items: center;
-			align-self: center;
-			text-align: center;
+			justify-content: space-between;
 		}
 		.province_bar_segment button {
 			margin-top: 5px;
@@ -207,6 +199,9 @@
 		#commands_segment .via_command {
 			width: 50%;
 			padding: 0;
+			color: transparent;
+			text-indent: 27px;
+			margin-top: 14px;
 		}
 		/* Alliancy, Diplomacy, Production, Stockmarket, Resource, unitDetail, and PlayerDetail container */
 		#diplomacyContainer, #provinceProductionsContainer, #inGameAllianceContainer, #stockmarketContainer, #resourcesContainer, #playerDetailContainer, #unitDetailContainer {
@@ -439,7 +434,7 @@
 		}
 		/* Prevent buy/sell popup behind parent */
 		#inputDialogContainer {
-			z-index: 20004;
+			z-index: 20004 !important;
 		}
 		/* Resource settings */
 		.resources_page {
