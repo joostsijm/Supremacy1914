@@ -25,6 +25,9 @@
 		ul.mainmenu li:last-child {
 			margin: auto;
 		}
+
+		/* Newspaper */
+		/* */
 		/* News article full with */
 		.newspaper_article {
 			width: 100%;
@@ -32,6 +35,12 @@
 		.newspaper_overview_section {
 			width: 100% !important;
 		}
+		.newspaper_information, .newspaper_ranking {
+			height: 330px;
+		}
+
+		/* Resource bar*/
+		/* */
 		/* Fixing the resource bar */
 		#resourceBarContainer > div {
 			width: 100%;
