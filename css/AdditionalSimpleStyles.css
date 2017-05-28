@@ -216,8 +216,15 @@
 		height: 512px !important;
 	}
 }
+
 @media (min-width: 1880px) {
 	#articles #articles {
 		column-count: 3;
+	}
+}
+
+@media (max-width: 700px) {
+	#articles #articles {
+		column-count: 1;
 	}
 }
