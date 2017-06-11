@@ -16,7 +16,8 @@
 	}
 
 	/* Removes facebookshare button */
-	#func_btn_facebookshare,#func_invite_button {
+	#func_btn_facebookshare,
+	#func_invite_button {
 		display: none;
 	}
 
@@ -24,12 +25,14 @@
 	/**/
 
 	/* Removes left and right buttons from provincie footer menu */
-	#func_provbar_iter_left,#func_provbar_iter_right {
+	#func_provbar_iter_left,
+	#func_provbar_iter_right {
 		display: none !important;
 	}
 
 	/* Removes left and right buttons from troops footer menu */
-	#func_armybar_iter_left,#func_armybar_iter_right {
+	#func_armybar_iter_left,
+	#func_armybar_iter_right {
 		display: none !important;
 	}
 
@@ -74,7 +77,8 @@
 		height: 283px !important;
 	}
 
-	#newspaperContainer .paper_panel,#newspaperContainer .wooden_panel {
+	#newspaperContainer .paper_panel,
+	#newspaperContainer .wooden_panel {
 		top: 0;
 		bottom: 0;
 		left: 0;
@@ -158,18 +162,18 @@
 	.province_list_upgrade_sorting_divider {
 		height: 8px;
 		border-left: 1px solid;
-		border-color: rgba(163,161,157,0.82);
-		background-color: rgba(101,101,101,0.3);
+		border-color: rgba(163, 161, 157, 0.82);
+		background-color: rgba(101, 101, 101, 0.3);
 	}
 
 	#func_provinceWidgetTableHead td.active .province_list_upgrade_sorting_divider {
 		border-left: 0;
 		border-right: 1px solid !important;
-		border-color: rgba(97,97,97,0.93) !important;
+		border-color: rgba(97, 97, 97, 0.93) !important;
 	}
 
 	#func_provinceWidgetTableHead td.active .province_list_upgrade_sorting_divider_active {
-		background-color: rgba(101,101,101,0.7);
+		background-color: rgba(101, 101, 101, 0.7);
 	}
 
 	/* Fix sidebar order */
@@ -181,7 +185,8 @@
 		min-width: 37px;
 	}
 
-	#province_list_upgrade_icon_header, .column_upgrades > div {
+	#province_list_upgrade_icon_header,
+	.column_upgrades > div {
 		display: flex;
 	}
 
@@ -195,23 +200,24 @@
 		position: initial;
 	}
 
-	#province_list_upgrade_icon_header div:nth-child(4), .prov_list_building_slot:nth-child(4) {
+	#province_list_upgrade_icon_header div:nth-child(4),
+	.prov_list_building_slot:nth-child(4) {
 		order: 7
 	}
 
 	.glasspanel{
-		-webkit-box-shadow: 0 0 0 1px #a0a0a0,1px 1px 0 1px #575757,-1px 0 2px 0 rgba(12,12,12,0.44) inset, 0px 0px 35px 0px rgba(0, 0, 0, 0.5);
-		box-shadow: 0 0 0 1px #a0a0a0,0px 0px 0 1px #575757,0px 0 2px 0 rgba(12,12,12,0.44) inset, 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+		-webkit-box-shadow: 0 0 0 1px #a0a0a0, 1px 1px 0 1px #575757, -1px 0 2px 0 rgba(12, 12, 12, 0.44) inset, 0px 0px 35px 0px rgba(0, 0, 0, 0.5);
+		box-shadow: 0 0 0 1px #a0a0a0, 0px 0px 0 1px #575757, 0px 0 2px 0 rgba(12, 12, 12, 0.44) inset, 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
 	}
 
 	.info_footer {
-		-webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
-		box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
+		-webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+		box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
 	}
 
 	.func_map_overlay_province {
-		-webkit-box-shadow: 0px 20px 20px -15px rgba(0,0,0,0.5);
-		box-shadow: 0px 20px 20px -10px rgba(0,0,0,0.5);
+		-webkit-box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.5);
+		box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
 	}
 
 	#article_dialog_body textarea {
