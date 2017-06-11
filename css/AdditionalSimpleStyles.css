@@ -50,6 +50,7 @@
 	.echo-table-cell-large {
 		width: 240px !important;
 	}
+
 	.iga-applicant-list .echo-table-cell-large {
 		width: 225px !important;
 	}
@@ -67,25 +68,31 @@
 		height: 100% !important;
 		z-index: 1006 !important;
 	}
+
 	#func_newspaper_map {
 		margin-top: 17px !important;
 		height: 283px !important;
 	}
+
 	#newspaperContainer .paper_panel,#newspaperContainer .wooden_panel {
 		top: 0;
 		bottom: 0;
 		left: 0;
 		right: 0;
 	}
+
 	#map_section.newspaper_overview_section {
 		width: 33%;
 	}
+
 	#func_newspaper_map {
 		width: 100%;
 	}
+
 	#func_newspaper_map {
 		position: relative;
 	}
+
 	#newspaper_cat_filter{
 		border-bottom: 1px solid rgb(175, 173, 169);
 		width: 100% !important;
@@ -93,6 +100,7 @@
 		margin-left: 0px;
 		margin: 16px 0 0;
 	}
+
 	#newspaper_articles .overview .sg_float_l {
 		float: right;
 	}
@@ -102,12 +110,14 @@
 		column-count: 2;
 		column-gap: 0;
 	}
+
 	.newspaper_article {
 		width: auto;
 		page-break-inside: avoid;
 		break-inside: avoid;
 		float: none;
 	}
+
 	.newspaper_article_pad_right {
 		padding: 0;
 	}
@@ -121,9 +131,11 @@
 	#func_diplomacy_messages .diplomacy_message_creation textarea {
 		color: black;
 	}
+
 	.newspaper_tabs li{
 		border-bottom: 1px solid transparent !important;
 	}
+
 	.building_popup_content .building_details > div {
 		padding: 5px !important;
 	}
@@ -132,13 +144,16 @@
 	#provinceListContainer tr #func_sort_by_upgrades div {
 		margin-top: -8px;
 	}
+
 	#province_list_upgrade_icon_header {
 		bottom: 0px;
 	}
+
 	/* Fixes the arrows position after the height change */
 	.gui-arrow_sorting_down_white {
 		margin-top: 0 !important;
 	}
+
 	/* Adds a better border to the sorting options */
 	.province_list_upgrade_sorting_divider {
 		height: 8px;
@@ -146,71 +161,90 @@
 		border-color: rgba(163,161,157,0.82);
 		background-color: rgba(101,101,101,0.3);
 	}
+
 	#func_provinceWidgetTableHead td.active .province_list_upgrade_sorting_divider {
 		border-left: 0;
 		border-right: 1px solid !important;
 		border-color: rgba(97,97,97,0.93) !important;
 	}
+
 	#func_provinceWidgetTableHead td.active .province_list_upgrade_sorting_divider_active {
 		background-color: rgba(101,101,101,0.7);
 	}
+
 	/* Fix sidebar order */
 	.upgrade_icon {
 		margin: 0;
 	}
+
 	.prov_list_building_slot {
 		min-width: 37px;
 	}
+
 	#province_list_upgrade_icon_header, .column_upgrades > div {
 		display: flex;
 	}
+
 	.prov_list_sort_marker {
 		/* Removes the arrow on the wrong location */
 		display: none !important;
 	}
+
 	.province_list_upgrade_sorting_divider {
 		left: auto !important;
 		position: initial;
 	}
+
 	#province_list_upgrade_icon_header div:nth-child(4), .prov_list_building_slot:nth-child(4) {
 		order: 7
 	}
+
 	.glasspanel{
 		-webkit-box-shadow: 0 0 0 1px #a0a0a0,1px 1px 0 1px #575757,-1px 0 2px 0 rgba(12,12,12,0.44) inset, 0px 0px 35px 0px rgba(0, 0, 0, 0.5);
 		box-shadow: 0 0 0 1px #a0a0a0,0px 0px 0 1px #575757,0px 0 2px 0 rgba(12,12,12,0.44) inset, 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
 	}
+
 	.info_footer {
 		-webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
 		box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
 	}
+
 	.func_map_overlay_province {
 		-webkit-box-shadow: 0px 20px 20px -15px rgba(0,0,0,0.5);
 		box-shadow: 0px 20px 20px -10px rgba(0,0,0,0.5);
 	}
+
 	#article_dialog_body textarea {
 		height: 175px !important;
 	}
+
 	.new_article_dialog .select_image_button {
 		right: 0px;
 		left: 287px;
 	}
+
 	.delta-table-text-area-input {
 		padding: 5px;
 		width: 99.25%;
 	}
+
 	.iga-info-container{
 		margin: 10px;
 	}
+
 	#inGameAllianceDetailContainer {
 		top: 83.5px !important;
 		height: 677px !important;
 	}
+
 	.iga-member-list-table {
 		height: 345px;
 	}
+
 	.iga-member-list-table .func_scrollable {
 		height: 282px;
 	}
+
 	/* Profile window height */
 	#playerDetailContainer {
 		height: 512px !important;
