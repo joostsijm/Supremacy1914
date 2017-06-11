@@ -37,7 +37,7 @@
 	}
 
 	/* Remove scrollbar, but leave scrollable */
-	#army_bar #status_segment .scrollbar{
+	#army_bar #status_segment .scrollbar {
 		display: none;
 	}
 
@@ -97,7 +97,7 @@
 		position: relative;
 	}
 
-	#newspaper_cat_filter{
+	#newspaper_cat_filter {
 		border-bottom: 1px solid rgb(175, 173, 169);
 		width: 100% !important;
 		float: none;
@@ -136,7 +136,7 @@
 		color: black;
 	}
 
-	.newspaper_tabs li{
+	.newspaper_tabs li {
 		border-bottom: 1px solid transparent !important;
 	}
 
@@ -205,7 +205,7 @@
 		order: 7
 	}
 
-	.glasspanel{
+	.glasspanel {
 		-webkit-box-shadow: 0 0 0 1px #a0a0a0, 1px 1px 0 1px #575757, -1px 0 2px 0 rgba(12, 12, 12, 0.44) inset, 0px 0px 35px 0px rgba(0, 0, 0, 0.5);
 		box-shadow: 0 0 0 1px #a0a0a0, 0px 0px 0 1px #575757, 0px 0 2px 0 rgba(12, 12, 12, 0.44) inset, 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
 	}
@@ -234,7 +234,7 @@
 		width: 99.25%;
 	}
 
-	.iga-info-container{
+	.iga-info-container {
 		margin: 10px;
 	}
 
