@@ -63,6 +63,9 @@
 		left: 10px;
 	}
 
+	/* Newspaper */
+	/* */
+
 	/* Make the newspaper fullscreen */
 	#newspaperContainer {
 		top: 0 !important;
@@ -109,6 +112,10 @@
 		float: right;
 	}
 
+	#writeArticleContainer {
+		z-index: 1007 !important;
+	}
+
 	/* Change article layout */
 	#articles #articles {
 		column-count: 2;
@@ -116,15 +123,19 @@
 	}
 
 	.newspaper_article {
-		width: auto;
+		width: 100%;
 		page-break-inside: avoid;
-		break-inside: avoid;
-		float: none;
+		display: inline-block;
 	}
 
 	.newspaper_article_pad_right {
 		padding: 0;
 	}
+
+	.newspaper_tabs li {
+		border-bottom: 1px solid transparent !important;
+	}
+
 
 	/* Easy fix for the client controls that didn't align properly */
 	#clientControlsContainer .client_controls {
@@ -134,10 +145,6 @@
 	/* Changes the color of the text field in diplamacy window */
 	#func_diplomacy_messages .diplomacy_message_creation textarea {
 		color: black;
-	}
-
-	.newspaper_tabs li {
-		border-bottom: 1px solid transparent !important;
 	}
 
 	.building_popup_content .building_details > div {
@@ -218,6 +225,16 @@
 	.func_map_overlay_province {
 		-webkit-box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.5);
 		box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
+	}
+
+	/* Change hight of province production viewport */
+	#provinceProductionsContainer {
+		top: 120px !important;
+		height: 670px !important;
+	}
+
+	#provinceProductionsContainer .viewport {
+		height: 850px;
 	}
 
 	#article_dialog_body textarea {
