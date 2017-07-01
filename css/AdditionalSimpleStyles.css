@@ -229,12 +229,8 @@
 
 	/* Change hight of province production viewport */
 	#provinceProductionsContainer {
-		top: 120px !important;
-		height: 670px !important;
-	}
-
-	#provinceProductionsContainer .viewport {
-		height: 850px;
+		top: 80px !important;
+		height: 770px !important;
 	}
 
 	#article_dialog_body textarea {
