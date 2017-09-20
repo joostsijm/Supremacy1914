@@ -21,8 +21,58 @@
 		display: none;
 	}
 
-	/* Bottom bar */
-	/**/
+	/* Removes incorrect popups from screen */
+	#helperErrorContainer {
+		display: none !important;
+	}
+
+	/* Profile window height */
+	#playerDetailContainer {
+		height: 512px !important;
+	}
+
+	#unit_selection_actions .default_button {
+		margin: 0 4px !important;
+	}
+
+	.echo-table-cell-large {
+		width: 240px !important;
+	}
+
+	.iga-applicant-list .echo-table-cell-large {
+		width: 225px !important;
+	}
+
+	/* Easy fix for the client controls that didn't align properly */
+	#clientControlsContainer .client_controls {
+		margin-left: 75px;
+	}
+
+	/* Changes the color of the text field in diplamacy window */
+	#func_diplomacy_messages .diplomacy_message_creation textarea {
+		color: black;
+	}
+
+	/* Add resource bar and spybar shadow */
+	.glasspanel {
+		-webkit-box-shadow: 0 0 0 1px #a0a0a0, 1px 1px 0 1px #575757, -1px 0 2px 0 rgba(12, 12, 12, 0.44) inset, 0px 0px 35px 0px rgba(0, 0, 0, 0.5);
+		box-shadow: 0 0 0 1px #a0a0a0, 0px 0px 0 1px #575757, 0px 0 2px 0 rgba(12, 12, 12, 0.44) inset, 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+	}
+
+	/* Add footer shadows */
+	.info_footer {
+		-webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+		box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+	}
+
+	.func_map_overlay_province {
+		-webkit-box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.5);
+		box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
+	}
+
+	/* 
+	 * Start bottom bar
+	 */
 
 	/* Removes left and right buttons from provincie footer menu */
 	#func_provbar_iter_left,
@@ -40,31 +90,14 @@
 	#army_bar #status_segment .scrollbar {
 		display: none;
 	}
+	
+	/*
+	 * End bottom bar
+	 */
 
-	/* Removes incorrect popups from screen */
-	#helperErrorContainer {
-		display: none !important;
-	}
-
-	#unit_selection_actions .default_button {
-		margin: 0 4px !important;
-	}
-
-	.echo-table-cell-large {
-		width: 240px !important;
-	}
-
-	.iga-applicant-list .echo-table-cell-large {
-		width: 225px !important;
-	}
-
-	.building_popup_content .building_details .construction_bottom {
-		right: 10px;
-		left: 10px;
-	}
-
-	/* Newspaper */
-	/* */
+	/* 
+	 * Begin newspaper
+	 */
 
 	/* Make the newspaper fullscreen */
 	#newspaperContainer {
@@ -136,20 +169,22 @@
 		border-bottom: 1px solid transparent !important;
 	}
 
-
-	/* Easy fix for the client controls that didn't align properly */
-	#clientControlsContainer .client_controls {
-		margin-left: 75px;
+	#article_dialog_body textarea {
+		height: 175px !important;
 	}
 
-	/* Changes the color of the text field in diplamacy window */
-	#func_diplomacy_messages .diplomacy_message_creation textarea {
-		color: black;
+	.new_article_dialog .select_image_button {
+		right: 0px;
+		left: 287px;
 	}
 
-	.building_popup_content .building_details > div {
-		padding: 5px !important;
-	}
+	/*
+	 * End newspaper
+	 */
+
+	/*
+	 * Start province sidebar 
+	 */
 
 	/* Change the button height of the sorting options in the sidebar */
 	#provinceListContainer tr #func_sort_by_upgrades div {
@@ -197,8 +232,8 @@
 		display: flex;
 	}
 
+	/* Removes the arrow on the wrong location */
 	.prov_list_sort_marker {
-		/* Removes the arrow on the wrong location */
 		display: none !important;
 	}
 
@@ -212,20 +247,9 @@
 		order: 7
 	}
 
-	.glasspanel {
-		-webkit-box-shadow: 0 0 0 1px #a0a0a0, 1px 1px 0 1px #575757, -1px 0 2px 0 rgba(12, 12, 12, 0.44) inset, 0px 0px 35px 0px rgba(0, 0, 0, 0.5);
-		box-shadow: 0 0 0 1px #a0a0a0, 0px 0px 0 1px #575757, 0px 0 2px 0 rgba(12, 12, 12, 0.44) inset, 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-	}
-
-	.info_footer {
-		-webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-		box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
-	}
-
-	.func_map_overlay_province {
-		-webkit-box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.5);
-		box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
-	}
+	/*
+	 * End province sidebar
+	 */
 
 	/* 
 	 * Start production menu
@@ -242,18 +266,22 @@
 		width: 210px;
 	}
 
+	.building_popup_content .building_details > div {
+		padding: 5px !important;
+	}
+
+	.building_popup_content .building_details .construction_bottom {
+		right: 10px;
+		left: 10px;
+	}
+
 	/*
 	 * End production menu
 	 */
 
-	#article_dialog_body textarea {
-		height: 175px !important;
-	}
-
-	.new_article_dialog .select_image_button {
-		right: 0px;
-		left: 287px;
-	}
+	/*
+	 * Begin coalition window 
+	 */
 
 	.delta-table-text-area-input {
 		padding: 5px;
@@ -277,10 +305,9 @@
 		height: 282px;
 	}
 
-	/* Profile window height */
-	#playerDetailContainer {
-		height: 512px !important;
-	}
+	/*
+	 * Begin coalition window 
+	 */
 }
 
 @media (min-width: 1880px) {
