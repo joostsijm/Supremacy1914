@@ -90,6 +90,15 @@
 	#army_bar #status_segment .scrollbar {
 		display: none;
 	}
+
+	#helperTooltipContainer .minimal_tooltip {
+		max-width: 250px;
+		left: 705px
+	}
+	
+	#helperTooltipContainer #morale_info {
+		width: 250px;
+	}
 	
 	/*
 	 * End bottom bar
