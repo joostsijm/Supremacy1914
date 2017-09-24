@@ -56,4 +56,24 @@
 	td.sg_pi1-newpost-right textarea {
 		width: 100%;
 	}
+
+	/*
+	 * Begin responsive website
+	 */
+
+	@media screen and (max-width: 960px) {
+		html, body {
+			max-width: 100%;
+			overflow-x: hidden;
+		}
+		div.sg_align_c {
+			margin-left: 0;
+			margin-right: 0;
+			text-align: left;
+		}
+	}
+
+	/*
+	 * End responsive website
+	 */
 }
