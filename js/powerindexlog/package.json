@@ -1,16 +1,20 @@
 {
-  "name": "Supremacy1914-power-index-log",
-  "version": "0.1.0",
-  "description": "An automatic script based on NodeJS that logs the power each player has. Checks every day.",
+  "name": "powerindexlog",
+  "description": "An automatic script based on NodeJS that logs the power each player has.",
+  "version": "1.0.0",
   "main": "index.js",
+  "repository" : {		
+    "type" : "git",
+    "url" : "https://github.com/joostsijm/Supremacy1914/"
+  },
+  "dependencies": {
+    "nightmare": "^2.10.0",
+    "nightmare-window-manager": "^0.2.2"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "jshint index.js config.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository" :
-  { "type" : "git"
-  , "url" : "https://github.com/joostsijm/Supremacy1914/"
-  },
-  "license" : "Apache-2.0",
   "keywords": [
     "Supremacy1914",
     "browser",
@@ -18,8 +22,5 @@
     "statics"
   ],
   "author": "Joost Sijm",
-  "dependencies": {
-    "nightmare": "^2.8.1",
-    "nightmare-window-manager": "^0.2.2"
-  }
+  "license" : "Apache-2.0"
 }
