@@ -12,7 +12,8 @@ class Game(Base):
     # -------------
 
     id = Column(Integer, primary_key=True)
-    game_id= Column(Integer)
+    game_id = Column(Integer)
+    game_host = Column(String)
     start_at = Column(DateTime)
     end_at = Column(DateTime)
 
@@ -22,6 +23,14 @@ class Game(Base):
 
     map_id = Column(Integer, ForeignKey('sp_maps.id'))
     map = relationship("sp_maps", back_populates="games")
+
+    players = relationship("sp_players", back_populates="game")
+
+    days = relationship("sp_days", back_populates="game")
+
+    relations = relationship("sp_relations", back_populates="game")
+
+    coalitions = relationship("sp_coalitions", back_populates="game")
 
     #
     # Representation
