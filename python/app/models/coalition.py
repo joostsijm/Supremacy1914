@@ -20,10 +20,10 @@ class Coalition(Base):
     # Relationships
     # -------------
 
-    days = relationship("sp_days", back_populates="game")
+    days = relationship("Day", back_populates="coalition")
 
     game_id = Column(Integer, ForeignKey('sp_games.id'))
-    game = relationship("sp_games", back_populates="coalitions")
+    game = relationship("Game", back_populates="coalitions")
 
     #
     # Representation

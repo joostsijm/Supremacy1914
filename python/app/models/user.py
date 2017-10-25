@@ -20,7 +20,7 @@ class User(Base):
     # Relationships
     # -------------
 
-    players = relationship("sp_players", back_populates="user")
+    players = relationship("Player", back_populates="user")
 
     #
     # Representation

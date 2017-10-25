@@ -27,16 +27,16 @@ class Player(Base):
     # -------------
 
     user_id = Column(Integer, ForeignKey('sp_users.id'))
-    user = relationship("sp_users", back_populates="players")
+    user = relationship("User", back_populates="players")
 
     game_id = Column(Integer, ForeignKey('sp_games.id'))
-    game = relationship("sp_games", back_populates="players")
+    game = relationship("Game", back_populates="players")
 
-    days = relationship("sp_days", back_populates="game")
+    days = relationship("Day", back_populates="player")
 
-    native_relations = relationship("sp_relations", back_populates="player_native")
+    native_relations = relationship("Relation", foreign_keys="Relation.player_native_id", back_populates="player_native")
 
-    foreign_relations = relationship("sp_relations", back_populates="player_foreign")
+    foreign_relations = relationship("Relation", foreign_keys="Relation.player_foreign_id", back_populates="player_foreign")
 
     #
     # Representation

@@ -20,13 +20,13 @@ class Day(Base):
     # -------------
 
     player_id = Column(Integer, ForeignKey('sp_players.id'))
-    player = relationship("sp_players", back_populates="days")
+    player = relationship("Player", back_populates="days")
 
     game_id = Column(Integer, ForeignKey('sp_games.id'))
-    game = relationship("sp_games", back_populates="days")
+    game = relationship("Game", back_populates="days")
 
     coalition_id = Column(Integer, ForeignKey('sp_coalitions.id'))
-    coalition = relationship("sp_coalitions", back_populates="days")
+    coalition = relationship("Coalition", back_populates="days")
 
     #
     # Representation

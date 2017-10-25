@@ -20,7 +20,7 @@ class Map(Base):
     # Relationships
     # -------------
 
-    games = relationship("sp_games", back_populates="map")
+    games = relationship("Game", back_populates="map")
 
     #
     # Representation

@@ -20,13 +20,13 @@ class Relation(Base):
     # -------------
 
     game_id = Column(Integer, ForeignKey('sp_games.id'))
-    game = relationship("sp_games", back_populates="relations")
+    game = relationship("Game", back_populates="relations")
 
-    player1_native_id = Column(Integer, ForeignKey('sp_players.id'))
-    player_native = relationship("sp_players", back_populates="native_relations")
+    player_native_id = Column(Integer, ForeignKey('sp_players.id'))
+    player_native = relationship("Player", foreign_keys="Relation.player_native_id", back_populates="native_relations")
 
     player_foreign_id = Column(Integer, ForeignKey('sp_players.id'))
-    player_foreign = relationship("sp_players", back_populates="foreign_relations")
+    player_foreign = relationship("Player", foreign_keys="Relation.player_foreign_id", back_populates="foreign_relations")
 
     #
     # Representation

@@ -22,15 +22,15 @@ class Game(Base):
     # -------------
 
     map_id = Column(Integer, ForeignKey('sp_maps.id'))
-    map = relationship("sp_maps", back_populates="games")
+    map = relationship("Map", back_populates="games")
 
-    players = relationship("sp_players", back_populates="game")
+    players = relationship("Player", back_populates="game")
 
-    days = relationship("sp_days", back_populates="game")
+    days = relationship("Day", back_populates="game")
 
-    relations = relationship("sp_relations", back_populates="game")
+    relations = relationship("Relation", back_populates="game")
 
-    coalitions = relationship("sp_coalitions", back_populates="game")
+    coalitions = relationship("Coalition", back_populates="game")
 
     #
     # Representation
