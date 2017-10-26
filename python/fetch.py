@@ -122,6 +122,8 @@ def get_game():
         game.map_id = map.id;
         session.commit()
 
+        return game
+
 
 def check_response(response):
     print_json(response)
@@ -134,10 +136,14 @@ def check_response(response):
     return True
 
 
-def get_players():
+def get_players(game_id):
     payload = payloadSample
-    payload["gameID"] = id
+    payload["gameID"] = game_id
     payload["stateType"] = 1
+
+    game = session.query(Game).filter(Game.game_id == id).first()
+    if game is None:
+        game = get_game(game_id)
 
     r = requests.post(url, headers=headers, json=payload)
 
@@ -145,7 +151,8 @@ def get_players():
     print_json(text["result"]["players"])
 
 
-get_game()
+#get_game()
 #write_results()
+get_players(2100245)
 
 print("\ndone!")
