@@ -2,7 +2,15 @@
 
 import time
 import json
+import datetime
 import requests
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+from app.models.base import Game 
+from app.models.base import Map 
+
 
 headers = {
         "Host": "xgs15.c.bytro.com",
@@ -19,19 +27,26 @@ headers = {
 
 payloadSample = {
         "@c": "ultshared.action.UltUpdateGameStateAction",
-        "gameID": "2117045",
         "playerID": 0,
         "userAuth": "787925a25d0c072c3eaff5c1eff52829475fd506",
         "tstamp": int(time.time())
         }
 
-url = 'https://xgs15.c.bytro.com/'
+# temp place for variables
+url = 'https://xgs3.c.bytro.com/'
+id = 2117045
+
+engine = create_engine("postgresql://supindex@localhost/supindex")
+Session = sessionmaker(bind=engine)
+session = Session()
+
 
 def print_json(jsonText):
     print(json.dumps(jsonText, sort_keys=True, indent=4))
 
 def get_day():
     payload = payloadSample
+    payload["gameID"] = id
     payload["stateType"] = 12
     payload["option"] = 30
 
@@ -43,6 +58,7 @@ def get_day():
 
 def get_score(day):
     payload = payloadSample
+    payload["gameID"] = id
     payload["stateType"] = 2
     payload["option"] = day
 
@@ -70,8 +86,53 @@ def write_results():
 
     resultsFile.close()
 
+def get_game():
+    payload = payloadSample
+    payload["gameID"] = id
+    payload["stateType"] = 12
+
+    game = session.query(Game).filter(Game.game_id == id).first()
+    if game is None:
+        game = Game();
+        game.game_id = id,
+        game.game_host = url,
+        session.add(game)
+
+    r = requests.post(game.game_host, headers=headers, json=payload)
+
+    text = json.loads(r.text)
+    if not check_response(text):
+        get_game();
+
+    result = text["result"]
+
+    game.start_at = datetime.datetime.fromtimestamp(result["startOfGame"]),
+
+    map = session.query(Map).filter(Map.map_id == result["mapID"]).first()
+    if map is None:
+        map = Map();
+        map.map_id = result["mapID"]
+        map.slots = result["openSlots"] + result["numberOfPlayers"]
+        session.add(map)
+        session.commit()
+
+    game.map_id = map.id;
+    session.commit()
+
+
+def check_response(response):
+    if response["result"]["@c"] == "ultshared.rpc.UltSwitchServerException":
+        game = session.query(Game).filter(Game.game_id == id).first()
+        game.game_host = "http://" + response["result"]["newHostName"];
+        session.commit()
+        return False
+    
+    return True
+
+
 def get_players():
     payload = payloadSample
+    payload["gameID"] = id
     payload["stateType"] = 1
 
     r = requests.post(url, headers=headers, json=payload)
@@ -80,7 +141,7 @@ def get_players():
     print_json(text["result"]["players"])
 
 
-get_players()
+get_game()
 #write_results()
 
 print("\ndone!")
