@@ -12,6 +12,7 @@ class Map(Base):
     # -------------
 
     id = Column(Integer, primary_key=True)
+    map_id = Column(Integer)
     name = Column(String)
     image = Column(String)
     slots = Column(Integer)
