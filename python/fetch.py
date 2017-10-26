@@ -34,7 +34,8 @@ payloadSample = {
 
 # temp place for variables
 url = 'https://xgs3.c.bytro.com/'
-id = 2117045
+#id = 2117045
+id = 2100250
 
 engine = create_engine("postgresql://supindex@localhost/supindex")
 Session = sessionmaker(bind=engine)
@@ -96,31 +97,34 @@ def get_game():
         game = Game();
         game.game_id = id,
         game.game_host = url,
+
         session.add(game)
+        session.commit()
 
     r = requests.post(game.game_host, headers=headers, json=payload)
 
     text = json.loads(r.text)
     if not check_response(text):
         get_game();
+    else:
+        result = text["result"]
 
-    result = text["result"]
+        game.start_at = datetime.datetime.fromtimestamp(result["startOfGame"]),
 
-    game.start_at = datetime.datetime.fromtimestamp(result["startOfGame"]),
+        map = session.query(Map).filter(Map.map_id == result["mapID"]).first()
+        if map is None:
+            map = Map();
+            map.map_id = result["mapID"]
+            map.slots = result["openSlots"] + result["numberOfPlayers"]
+            session.add(map)
+            session.commit()
 
-    map = session.query(Map).filter(Map.map_id == result["mapID"]).first()
-    if map is None:
-        map = Map();
-        map.map_id = result["mapID"]
-        map.slots = result["openSlots"] + result["numberOfPlayers"]
-        session.add(map)
+        game.map_id = map.id;
         session.commit()
-
-    game.map_id = map.id;
-    session.commit()
 
 
 def check_response(response):
+    print_json(response)
     if response["result"]["@c"] == "ultshared.rpc.UltSwitchServerException":
         game = session.query(Game).filter(Game.game_id == id).first()
         game.game_host = "http://" + response["result"]["newHostName"];
