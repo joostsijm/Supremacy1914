@@ -35,7 +35,7 @@ class Player(Base):
     game_id = Column(Integer, ForeignKey('sp_games.id'))
     game = relationship("Game", back_populates="players")
 
-    days = relationship("Day", back_populates="player")
+    days = relationship("Day", back_populates="player", lazy="dynamic")
 
     native_relations = relationship("Relation", foreign_keys="Relation.player_native_id", back_populates="player_native")
 

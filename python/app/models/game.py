@@ -24,7 +24,7 @@ class Game(Base):
     map_id = Column(Integer, ForeignKey('sp_maps.id'))
     map = relationship("Map", back_populates="games")
 
-    players = relationship("Player", back_populates="game")
+    players = relationship("Player", back_populates="game", lazy="dynamic")
 
     days = relationship("Day", back_populates="game")
 

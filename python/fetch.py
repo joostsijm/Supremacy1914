@@ -13,6 +13,7 @@ from app.models.base import Game
 from app.models.base import Map
 from app.models.base import Player
 from app.models.base import User 
+from app.models.base import Day 
 
 
 headers = {
@@ -37,8 +38,8 @@ payloadSample = {
 
 # temp place for variables
 url = 'https://xgs3.c.bytro.com/'
-#id = 2100245 #internal game
-id = 2117045 #domination
+id = 2100245 #internal game
+#id = 2117045 #domination
 #id = 2100250 #random game
 
 engine = create_engine("postgresql://supindex@localhost/supindex")
@@ -49,49 +50,70 @@ session = Session()
 def print_json(jsonText):
     print(json.dumps(jsonText, sort_keys=True, indent=4))
 
-def get_day():
+
+def get_day(game, id):
     payload = payloadSample
     payload["gameID"] = id
     payload["stateType"] = 12
-    payload["option"] = 30
 
-    r = requests.post(url, headers=headers, json=payload)
+    r = requests.post(game.game_host, headers=headers, json=payload)
 
-    response = json.loads(r.text)
-    result = response["result"]
-    return result["dayOfGame"]
+    text = json.loads(r.text)
+    print_json(text)
+    if not check_response(text):
+        get_day(game, id)
+    else:
+        response = json.loads(r.text)
+        result = response["result"]
+        return result["dayOfGame"]
 
-def get_score(day):
+
+def get_score(game, day):
     payload = payloadSample
     payload["gameID"] = id
     payload["stateType"] = 2
     payload["option"] = day
 
-    r = requests.post(url, headers=headers, json=payload)
+    r = requests.post(game.game_host, headers=headers, json=payload)
 
     text = json.loads(r.text)
-    return text["result"]["ranking"]["ranking"]
+    if not check_response(text):
+        get_score(game, day)
+    else:
+        return text["result"]["ranking"]["ranking"]
 
 
-def write_results():
-    resultsFile = open("results.csv","w")
+def get_results(id):
+    game = session.query(Game).filter(Game.game_id == id).first()
+    if game is None:
+        game = get_game(id)
 
-    for day in range(0, get_day()):
-        day += 1
+    for day_index in range(0, get_day(game, id)):
+        day_index += 1
 
-        print("day: " + str(day))
-        result = get_score(day)
+        print("day: " + str(day_index))
+        result = get_score(game, day_index)
         result.pop(0)
 
-        formatedResult = str()
-        for player in result:
-            formatedResult += str(player) + ","
+        player_id = 1 
+        for score in result:
+            player = game.players.filter(Player.player_id == player_id).first()
+            day = player.days.filter(Day.day == day_index).first()
 
-        resultsFile.write(formatedResult + "\n")
+            if day is None:
+                day = Day()
+                day.day = day_index
+                day.points = score
+                day.game_id = game.id
+                day.player_id = player.id
+                session.add(day)
 
-    resultsFile.close()
+            player_id += 1
 
-def get_game():
+        session.commit()
+
+
+def get_game(id):
     payload = payloadSample
     payload["gameID"] = id
     payload["stateType"] = 12
@@ -135,7 +157,7 @@ def get_players():
 
     game = session.query(Game).filter(Game.game_id == id).first()
     if game is None:
-        get_game()
+        get_game(id)
 
     r = requests.post(game.game_host, headers=headers, json=payload)
 
@@ -207,6 +229,6 @@ def check_response(response):
     return True
 
 
-get_players()
+get_results(id)
 
 print("\ndone!")
