@@ -2,14 +2,17 @@
 
 import time
 import json
-import datetime
 import requests
+from datetime import datetime
 
 from sqlalchemy import create_engine
+from sqlalchemy import and_
 from sqlalchemy.orm import sessionmaker
 
-from app.models.base import Game 
-from app.models.base import Map 
+from app.models.base import Game
+from app.models.base import Map
+from app.models.base import Player
+from app.models.base import User 
 
 
 headers = {
@@ -34,11 +37,12 @@ payloadSample = {
 
 # temp place for variables
 url = 'https://xgs3.c.bytro.com/'
-#id = 2117045
-id = 2100250
+#id = 2100245 #internal game
+id = 2117045 #domination
+#id = 2100250 #random game
 
 engine = create_engine("postgresql://supindex@localhost/supindex")
-Session = sessionmaker(bind=engine)
+Session = sessionmaker(bind=engine, autoflush=False)
 session = Session()
 
 
@@ -73,17 +77,17 @@ def write_results():
     resultsFile = open("results.csv","w")
 
     for day in range(0, get_day()):
-        day += 1;
+        day += 1
 
         print("day: " + str(day))
         result = get_score(day)
         result.pop(0)
 
-        formatedResult = str();
+        formatedResult = str()
         for player in result:
             formatedResult += str(player) + ","
 
-        resultsFile.write(formatedResult + "\n");
+        resultsFile.write(formatedResult + "\n")
 
     resultsFile.close()
 
@@ -94,7 +98,7 @@ def get_game():
 
     game = session.query(Game).filter(Game.game_id == id).first()
     if game is None:
-        game = Game();
+        game = Game()
         game.game_id = id,
         game.game_host = url,
 
@@ -105,54 +109,104 @@ def get_game():
 
     text = json.loads(r.text)
     if not check_response(text):
-        get_game();
+        get_game()
     else:
         result = text["result"]
 
-        game.start_at = datetime.datetime.fromtimestamp(result["startOfGame"]),
+        game.start_at = datetime.fromtimestamp(result["startOfGame"]),
 
         map = session.query(Map).filter(Map.map_id == result["mapID"]).first()
         if map is None:
-            map = Map();
+            map = Map()
             map.map_id = result["mapID"]
             map.slots = result["openSlots"] + result["numberOfPlayers"]
             session.add(map)
             session.commit()
 
-        game.map_id = map.id;
+        game.map_id = map.id
         session.commit()
 
         return game
 
-
-def check_response(response):
-    print_json(response)
-    if response["result"]["@c"] == "ultshared.rpc.UltSwitchServerException":
-        game = session.query(Game).filter(Game.game_id == id).first()
-        game.game_host = "http://" + response["result"]["newHostName"];
-        session.commit()
-        return False
-    
-    return True
-
-
-def get_players(game_id):
+def get_players():
     payload = payloadSample
-    payload["gameID"] = game_id
+    payload["gameID"] = id
     payload["stateType"] = 1
 
     game = session.query(Game).filter(Game.game_id == id).first()
     if game is None:
-        game = get_game(game_id)
+        get_game()
 
-    r = requests.post(url, headers=headers, json=payload)
+    r = requests.post(game.game_host, headers=headers, json=payload)
 
     text = json.loads(r.text)
-    print_json(text["result"]["players"])
+    if not check_response(text):
+        get_players()
+    else:
+        result = text["result"]["players"]
+        for player_id in result:
+            save_player(game, result[player_id])
+
+def save_player(game, player_data):
+    if "playerID" in player_data:
+        player_id = int(player_data["playerID"])
+
+        if player_id > 0:
+            print("player_id: " + str(player_id))
+
+            player = session.query(Player).filter(and_(Player.game_id == id,
+                Player.player_id == player_id)).first()
+
+            if player is None:
+                player = Player()
+
+                player.game_id = game.id
+                player.player_id = player_id
+
+                player.nation_name = player_data["nationName"]
+
+                player.primary_color = player_data["primaryColor"]
+                player.secondary_color = player_data["secondaryColor"]
+
+                if "userName" in player_data:
+                    user = session.query(User).filter(User.name == player_data["userName"]).first()
+
+                    if user is None:
+                        user = User()
+
+                        user.site_id = player_data["siteUserID"]
+                        user.name = player_data["userName"]
+
+                        session.add(user)
+                        session.commit()
+
+                    player.user_id = user.id
+
+                session.add(player)
+
+            player.title = player_data["title"]
+            player.name = player_data["name"]
+
+            print(player.name)
+
+            player.defeated = player_data["defeated"]
+            if player_data["lastLogin"] == 0:
+                player.last_login = None
+            else:
+                player.last_login = datetime.fromtimestamp(player_data["lastLogin"]/1000)
+
+            session.commit()
 
 
-#get_game()
-#write_results()
-get_players(2100245)
+def check_response(response):
+    if response["result"]["@c"] == "ultshared.rpc.UltSwitchServerException":
+        game = session.query(Game).filter(Game.game_id == id).first()
+        game.game_host = "http://" + response["result"]["newHostName"]
+        session.commit()
+        return False
+    return True
+
+
+get_players()
 
 print("\ndone!")
