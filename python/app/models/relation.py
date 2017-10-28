@@ -13,7 +13,7 @@ class Relation(Base):
 
     id = Column(Integer, primary_key=True)
     start_day = Column(Integer)
-    relation = Column(Integer)
+    status = Column(Integer)
 
     #
     # Relationships

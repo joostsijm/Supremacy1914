@@ -14,6 +14,7 @@ from app.models.base import Map
 from app.models.base import Player
 from app.models.base import User 
 from app.models.base import Day 
+from app.models.base import Relation 
 
 
 headers = {
@@ -38,8 +39,8 @@ payloadSample = {
 
 # temp place for variables
 url = 'https://xgs3.c.bytro.com/'
-id = 2100245 #internal game
-#id = 2117045 #domination
+#id = 2100245 #internal game
+id = 2117045 #domination
 #id = 2100250 #random game
 
 engine = create_engine("postgresql://supindex@localhost/supindex")
@@ -150,7 +151,7 @@ def get_game(id):
 
         return game
 
-def get_players():
+def get_players(id):
     payload = payloadSample
     payload["gameID"] = id
     payload["stateType"] = 1
@@ -163,7 +164,7 @@ def get_players():
 
     text = json.loads(r.text)
     if not check_response(text):
-        get_players()
+        get_players(id)
     else:
         result = text["result"]["players"]
         for player_id in result:
@@ -220,6 +221,54 @@ def save_player(game, player_data):
             session.commit()
 
 
+def get_relations(id):
+    payload = payloadSample
+    payload["gameID"] = id
+    payload["stateType"] = 5
+
+    game = session.query(Game).filter(Game.game_id == id).first()
+    if game is None:
+        get_game(id)
+
+    r = requests.post(game.game_host, headers=headers, json=payload)
+
+    text = json.loads(r.text)
+    if not check_response(text):
+        get_relations()
+    else:
+        result = text["result"]["relations"]["neighborRelations"]
+        for player_id in result:
+            player_relations = result[player_id]
+            player = game.players.filter(Player.player_id == player_id).first()
+
+            if player is None:
+                get_players(id)
+            else:
+                for foreign_player_id in player_relations:
+                    relation_status = player_relations[foreign_player_id]
+                    foreign_player = game.players.filter(Player.player_id == foreign_player_id).first()
+
+                    if not foreign_player is None:
+                        relation = game.relations.filter(and_(
+                            Relation.player_native_id == player.id,
+                            Relation.player_foreign_id == foreign_player.id
+                        )).order_by(Relation.start_day.desc()).first()
+
+                        if relation is None or relation_status != relation.status:
+                            relation = Relation()
+
+                            relation.game_id = game.id
+                            relation.player_native_id = player.id
+                            relation.player_foreign_id = foreign_player.id
+
+                            relation.start_day = game.day()
+                            relation.status = relation_status
+
+                            session.add(relation)
+
+        session.commit()
+
+
 def check_response(response):
     if response["result"]["@c"] == "ultshared.rpc.UltSwitchServerException":
         game = session.query(Game).filter(Game.game_id == id).first()
@@ -229,6 +278,6 @@ def check_response(response):
     return True
 
 
-get_results(id)
+get_relations(id)
 
 print("\ndone!")
