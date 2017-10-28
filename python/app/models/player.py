@@ -14,11 +14,14 @@ class Player(Base):
     id = Column(Integer, primary_key=True)
     player_id = Column(Integer)
     start_day = Column(Integer)
-    Title = Column(String)
-    Name = Column(String, nullable=False)
+
+    title = Column(String, nullable=True)
+    name = Column(String, nullable=False)
     nation_name = Column(String, nullable=False)
+
     primary_color = Column(String)
     secondary_color = Column(String)
+
     defeated = Column(Boolean, default=False)
     last_login = Column(DateTime)
 

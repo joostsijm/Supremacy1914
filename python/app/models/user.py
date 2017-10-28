@@ -13,6 +13,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
+    site_id = Column(Integer, unique=True, nullable=False)
     score_military = Column(Integer)
     score_economic = Column(Integer)
 
