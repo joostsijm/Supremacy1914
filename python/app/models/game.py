@@ -43,7 +43,7 @@ class Game(Base):
     @hybrid_method
     def day(self):
         delta = datetime.today() - self.start_at
-        return delta.days
+        return delta.days + 1
 
     #
     # Representation
