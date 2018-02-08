@@ -13,6 +13,7 @@ var screenshotFail = configFile.screenshotOnFailure
 var username = configFile.username
 var password = configFile.password
 var gameid = configFile.gameid
+var suploginurl = "http://www.supremacy1914.com/index.php?id=250&L=2"
 // End Config File Imports
 
 var screenshotFolder = "output/screenshots/"
@@ -47,7 +48,7 @@ function start() {
 }
 
 function OpenGame () {
-	supbase.GetGameUrl(gameid).then(function(gameurl) {
+	supbase.GetGameUrl(gameid, gameurl).then(function(gameurl) {
 		supbase.GotoGame(gameurl).then(function() {
 			OpenPaper()
 		}, function() {

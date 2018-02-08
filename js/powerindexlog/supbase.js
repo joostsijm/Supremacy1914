@@ -12,6 +12,7 @@ module.exports = (function() {
 		waitTimeout: 10000,
 		gotoTimeout: 5000,
 		loadTimeout: 5000,
+		typeInterval: 10,
 		webPreferences: {
 			partition: 'nopersist'
 		}
