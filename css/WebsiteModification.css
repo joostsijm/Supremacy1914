@@ -8,14 +8,16 @@
  *   Makes it look better and more usable.
  *   Fixes some layout errors in the message window.
  */
+
 @-moz-document regexp('(http|https)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/index.php?.*') {
 	.sg_bg {
 		background: url("http://www.supremacy1914.com/fileadmin/templates/supremacy_1914/landing/7/lp7_back.jpg") no-repeat center top fixed;
 	}
+
 	#sg_main {
-		-webkit-box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.5);
-		-moz-box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.5);
-		box-shadow: 0px 0px 20px 10px rgba(0,0,0,0.5);
+		-webkit-box-shadow: 0 0 20px 10px rgba(0,0,0,0.5);
+		-moz-box-shadow: 0 0 20px 10px rgba(0,0,0,0.5);
+		box-shadow: 0 0 20px 10px rgba(0,0,0,0.5);
 		background: black;
 	}
 
@@ -23,22 +25,31 @@
 	 * Begin game overview
 	 */
 
-	.sg_game_playerlist_small {
+	.sg_game_playerlist_small
+	{
 		overflow: auto
 	}
-	.sg_game_comment_small {
+
+	.sg_game_comment_small
+	{
 		width: 145px;
 		padding-left: 7px;
 		height: auto;
 	}
-	.sg_mgpaper_headline {
+
+	.sg_mgpaper_headline
+	{
 		width: 245px;
 	}
-	#sg_mgpaper_id {
+
+	#sg_mgpaper_id
+	{
 		padding-right: 20px;
 		text-align: left;
 	}
-	#sg_mgpaper_ingame_part {
+
+	#sg_mgpaper_ingame_part
+	{
 		float: left;
 		padding: 1px 7px;
 	}
@@ -47,13 +58,18 @@
 	 * End game overview
 	 */
 
-	.sg_premium_account_header_image {
+	.sg_premium_account_header_image
+	{
 		display: none;
 	}
-	td.sg_pi1-newpost-left input {
+
+	td.sg_pi1-newpost-left input
+	{
 		width: 500px;
 	}
-	td.sg_pi1-newpost-right textarea {
+
+	td.sg_pi1-newpost-right textarea
+	{
 		width: 100%;
 	}
 
@@ -62,11 +78,14 @@
 	 */
 
 	@media screen and (max-width: 960px) {
-		html, body {
+		html, body
+		{
 			max-width: 100%;
 			overflow-x: hidden;
 		}
-		div.sg_align_c {
+
+		div.sg_align_c
+		{
 			margin-left: 0;
 			margin-right: 0;
 			text-align: left;

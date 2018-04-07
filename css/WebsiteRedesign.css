@@ -3,128 +3,200 @@
  * Author        : Bergjnl
  * Version       : 0.1.1
  */
+
 @-moz-document regexp('(http|https)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/index.php.*') {
 	/* Remove popup */
-	#dialog_overlay {
+	#dialog_overlay
+	{
 		display: none !important;
 	}
-	.balloon_tapete {
+
+	.balloon_tapete
+	{
 		display: none !important;
 	}
+
 	/* Smaller header */
-	#sg_header, #sg_header_banner {
+	#sg_header,
+	#sg_header_banner
+	{
 		height: 160px;
 	}
-	#sg_header_lang_select {
+
+	#sg_header_lang_select
+	{
 		padding-right: 0;
 	}
-	#sg_header_lang_select #leftpart {
+
+	#sg_header_lang_select #leftpart
+	{
 		display: none;
 	}
-	#sg_top_button_wrap {
+
+	#sg_top_button_wrap
+	{
 		display: none;
 	}
+
 	/* Login Box */
-	.sg_status_header_li {
+	.sg_status_header_li
+	{
 		background-image: url(http://static2.bytro.com/fileadmin/templates/supremacy_1914/images/102_menue/menue_back.jpg);
 	}
-	#sg_status_bl {
+
+	#sg_status_bl
+	{
 		width: 210px;
 		background: none;
 	}
-	.sg_loginbox_goldmark_bg {
+
+	.sg_loginbox_goldmark_bg
+	{
 		display: none;
 	}
-	.sg_loginbox_goldmark_bg > div {
+
+	.sg_loginbox_goldmark_bg > div
+	{
 		display: none;
 	}
+
 	/* Menu on top of your screen */
-	.tmp_table > tbody > tr:first-child  , #sg_menu_back, #sg_menu {
+	.tmp_table > tbody > tr:first-child,
+	#sg_menu_back,
+	#sg_menu
+	{
 		display: flex;
 		flex-wrap: wrap;
 	}
-	#sg_menu_back, #sg_content_back {
+
+	#sg_menu_back,
+	#sg_content_back
+	{
 		width: 100%
 	}
-	#sg_menu {
+
+	#sg_menu
+	{
 		overflow: visible;
 		width: 85%;
 	}
-	.sg_menu_c {
+
+	.sg_menu_c
+	{
 		min-height: 83px;
 	}
-	#sg_menu_social {
+
+	#sg_menu_social
+	{
 		display: none;
 	}
-	#sg_menu_poster {
+
+	#sg_menu_poster
+	{
 		padding: 0;
 		width: 15%;
 		height: 110%
 	}
-	.sg_poster {
+
+	.sg_poster
+	{
 		background-size: contain;
 		width: 100%;
 		height: 100%;
 	}
-	.sg_poster_addv_premium_acc_pic {
+
+	.sg_poster_addv_premium_acc_pic
+	{
 		background: url("https://www.supremacy1914.com/fileadmin/templates/supremacy_1914/images/poster/new_view.gif") no-repeat left top;
 		height: 135px;
 		left: 0;
 		background-size: 130px;
 		margin-top: 10px;
 	}
-	.sg_poster_addv_premium_acc_logo {
+
+	.sg_poster_addv_premium_acc_logo
+	{
 		display: none;
 	}
-	.sg_poster_addv_premium_acc_text {
+
+	.sg_poster_addv_premium_acc_text
+	{
 		display: none;
 	}
-	.sup_ads_news_top {
+
+	.sup_ads_news_top
+	{
 		height: 10px;
 		width: 100%;
 		background: url(http://static2.bytro.com/fileadmin/templates/supremacy_1914/images/101_header/v2_header_border_bottom.gif);
 	}
-	#sg_paper_frame {
+
+	#sg_paper_frame
+	{
 		padding: 0;
 	}
-	.sg_mgpaper_header_w {
+
+	.sg_mgpaper_header_w
+	{
 		width: 96%;
 	}
-	#sg_mygames table {
+
+	#sg_mygames table
+	{
 		width: 100%;
 	}
-	.sg_mgpaper_table_w {
+
+	.sg_mgpaper_table_w
+	{
 		width: 100%;
 	}
+
 	/* News page */
-	.sg_paper_header_height {
+	.sg_paper_header_height
+	{
 		margin-top: 25px;
 	}
-	.sg_paper_header_w {
+
+	.sg_paper_header_w
+	{
 		width: 81%;
 	}
-	.sg_paper_header {
+
+	.sg_paper_header
+	{
 		background-position: center;
 	}
-	#sg_paper_content_s {
+
+	#sg_paper_content_s
+	{
 		width: 90%;
 	}
+
 	/* All games */
-	.sg_tgpaper_header_height {
+	.sg_tgpaper_header_height
+	{
 		height: 100%;
 	}
-	.sg_tgpaper_header_w {
+
+	.sg_tgpaper_header_w
+	{
 		width: 96%;
 	}
-	.sg_mgpaper_footer {
+
+	.sg_mgpaper_footer
+	{
 		width: 96%;
 		background-size: cover;
 	}
+
 	/* Profile Page */
-	#sg_profile_tab_main_content {
+	#sg_profile_tab_main_content
+	{
 		width: 80%;
 	}
-	#sg_content_back_empty {
+
+	#sg_content_back_empty
+	{
 		width: 100%
 	}
 }
