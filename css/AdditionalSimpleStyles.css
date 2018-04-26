@@ -110,13 +110,12 @@
 
 	#helperTooltipContainer .minimal_tooltip
 	{
-		max-width: 250px;
-		left: 705px
+		max-width: 350px;
 	}
 
 	#helperTooltipContainer #morale_info
 	{
-		width: 250px;
+		width: 350px;
 	}
 
 	/*
