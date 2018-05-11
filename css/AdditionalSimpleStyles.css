@@ -1,11 +1,20 @@
-@namespace  "http://www.w3.org/1999/xhtml";
 /* Name          : Supremacy 1914 additional Simple styles
  * Author        : Bergjnl
  * Version       : 0.13.1
  * Latest update : 2016-12-29
  */
 
-@-moz-document regexp('(http|https)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/.*') {
+@-moz-document
+	domain("supremacy1914.com"),
+	domain("supremacy1914.de"),
+	domain("supremacy1914.nl"),
+	domain("supremacy1914.es"),
+	domain("supremacy1914.pl"),
+	domain("supremacy1914.it"),
+	domain("supremacy1914.fr"),
+	domain("supremacy1914.gr")
+	{
+
 	/* Removes AdsContainer on the left side of the sceen */
 	#inGameAdsContainer
 	{
@@ -373,7 +382,7 @@
 	 */
 
 	@media (min-width: 1880px) {
-		#articles #articles 
+		#articles #articles
 		{
 			column-count: 3;
 		}

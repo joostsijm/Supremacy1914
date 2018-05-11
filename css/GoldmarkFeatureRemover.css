@@ -14,7 +14,17 @@
  * Popup window displaying goldmark ad
  */
 
-@-moz-document regexp('(http|https)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr).*') {
+@-moz-document
+	domain("supremacy1914.com"),
+	domain("supremacy1914.de"),
+	domain("supremacy1914.nl"),
+	domain("supremacy1914.es"),
+	domain("supremacy1914.pl"),
+	domain("supremacy1914.it"),
+	domain("supremacy1914.fr"),
+	domain("supremacy1914.gr")
+	{
+
 	/* Removes increase and decrease morale buttons */
 	#func_provbar_incr_morale,
 	#func_provbar_decr_morale,

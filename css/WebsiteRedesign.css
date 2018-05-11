@@ -4,7 +4,17 @@
  * Version       : 0.1.1
  */
 
-@-moz-document regexp('(http|https)://www\.supremacy1914\.(com|de|nl|es|pl|it|fr|gr)/index.php.*') {
+@-moz-document
+	domain("supremacy1914.com"),
+	domain("supremacy1914.de"),
+	domain("supremacy1914.nl"),
+	domain("supremacy1914.es"),
+	domain("supremacy1914.pl"),
+	domain("supremacy1914.it"),
+	domain("supremacy1914.fr"),
+	domain("supremacy1914.gr")
+	{
+
 	/* Remove popup */
 	#dialog_overlay
 	{
