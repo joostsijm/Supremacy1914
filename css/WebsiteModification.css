@@ -34,33 +34,9 @@
 	 * Begin game overview
 	 */
 
-	.sg_game_playerlist_small
+	#sg_betaUserPart
 	{
-		overflow: auto
-	}
-
-	.sg_game_comment_small
-	{
-		width: 145px;
-		padding-left: 7px;
-		height: auto;
-	}
-
-	.sg_mgpaper_headline
-	{
-		width: 245px;
-	}
-
-	#sg_mgpaper_id
-	{
-		padding-right: 20px;
-		text-align: left;
-	}
-
-	#sg_mgpaper_ingame_part
-	{
-		float: left;
-		padding: 1px 7px;
+		display: none;
 	}
 
 	/*
