@@ -1,0 +1,59 @@
+@-moz-document url-prefix("https://www.supremacy1914.nl/game.php"), url-prefix("https://www.supremacy1914.com/game.php"), url-prefix("https://www.supremacy1914.com/clients/s1914-client-ultimate"), url-prefix("https://www.supremacy1914.nl/clients/s1914-client-ultimate") {
+/* Begin global
+ */
+
+#targetedMarketingAvatarContainer
+{
+    display: none;
+}
+
+/* make the game window full width */
+#ultimate
+{
+    width: 100% !important;
+}
+
+/* make the map canvas full width */
+#mapContainer canvas
+{
+    width: 100%;
+}
+
+/* Doesn't work because background stays blurred
+#targetedMarketingPopupContainer
+{
+    display: none;
+}
+*/
+
+/* End global
+ */
+
+/* Begin goldmark
+ */
+
+/* End goldmark
+ */
+
+/* Begin Market
+ */
+
+/* make the market buy and sell header smaller */
+.offers_table_container .section_header .dialog_sub_title
+{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+/* Remove option to buy resources using goldmark */
+.offers_table_container .buy_content .layout_row:nth-child(1)
+{
+    display: none !important;
+}
+
+/* make cancel button more stand out */
+.button_cancel:not([disabled])
+{
+    background-image: url(images/gui/cancel_red_button_hover.png?faae70);
+}
+}
