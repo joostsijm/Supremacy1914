@@ -2,6 +2,18 @@
 /* Begin global
  */
 
+/* Make game IFrame full width */
+#ifm
+{
+    width: 100% !important;
+}
+
+/* Remove advertisement banner */
+img[referrerpolicy="unsafe-url"]
+{
+    display: none;
+}
+
 #targetedMarketingAvatarContainer
 {
     display: none;
