@@ -1,0 +1,17 @@
+// ==UserScript==
+// @name        Supremacy 1914 Ultra IFrame Redirect
+// @namespace   www.supremacy1914
+// @include     *supremacy1914.nl/game.php?*
+// @include     *supremacy1914.com/game.php?*
+// @version     1
+// @grant       none
+// @require     https://code.jquery.com/jquery-3.3.1.slim.min.js
+// ==/UserScript==
+
+$(document).ready(function() {
+    // Get url from IFrame
+    var url = $("iframe").attr("src");
+
+    // Redirect the current window
+    window.location.replace(url);
+});
