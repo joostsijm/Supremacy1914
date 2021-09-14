@@ -1,7 +1,6 @@
 @-moz-document url-prefix("https://www.supremacy1914.nl/game.php"), url-prefix("https://www.supremacy1914.com/game.php"), url-prefix("https://www.supremacy1914.com/clients/s1914-client-ultimate"), url-prefix("https://www.supremacy1914.nl/clients/s1914-client-ultimate") {
 /* Begin global
  */
-
 /* Make game IFrame full width */
 #ifm
 {
@@ -36,20 +35,22 @@ img[referrerpolicy="unsafe-url"]
 {
     display: none;
 }
-*/
 
+/* Make chat box able to move everywhere */
+#chatContainer {
+	left: 0 !important;
+	width: 100% !important;
+	top: 0 !important;
+	height: 100% !important;
+}
 /* End global
  */
-
 /* Begin goldmark
  */
-
 /* End goldmark
  */
-
 /* Begin Market
  */
-
 /* make the market buy and sell header smaller */
 .offers_table_container .section_header .dialog_sub_title
 {
@@ -67,5 +68,36 @@ img[referrerpolicy="unsafe-url"]
 .button_cancel:not([disabled])
 {
     background-image: url(images/gui/cancel_red_button_hover.png?faae70);
+}
+
+/* End market
+ */
+/* Begin newspaper
+ */
+/* Make market full width */
+#newspaperContainer
+{
+    width: calc(100% - 63px) !important;
+    left: 63px !important
+}
+
+#newspaperContainer .dialog_container
+{
+    max-width: none;
+}
+
+#newspaperContainer .the_newspaper .newspaper_header
+{
+    height: 130px;
+    background-size: cover;
+}
+#newspaperContainer .the_newspaper .newspaper_header .newspaper_logo
+{
+    margin-top: 5px;
+}
+
+#newspaperContainer .the_newspaper .middle .article_list_container .articles .newspaper_article
+{
+    width: calc(100% / 3);
 }
 }
